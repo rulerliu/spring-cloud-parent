@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: meite-shop-service-api-member
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: mayn
+Implementation-Vendor-Id: com.mayikt
+Build-Jdk: 1.8.0_172
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/meite-shop-parent/meite-shop-service-api/meite-shop
+ -service-api-member
+Created-By: Maven Integration for Eclipse
+
