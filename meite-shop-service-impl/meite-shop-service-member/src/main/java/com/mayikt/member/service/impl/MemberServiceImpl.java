@@ -25,7 +25,6 @@ public class MemberServiceImpl implements MemberService {
 	/**
 	 * 会员调用微信服务
 	 */
-	@GetMapping("/memberInvokeWeixin")
 	@Override
 	public AppEntity memberInvokeWeixin() {
 		return weiXinAppServiceFeign.getApp();

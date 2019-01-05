@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
+
 /**
  * @description:
  * @author: liuwq
@@ -14,8 +16,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient
+@EnableSwagger2Doc
 public class AppWeiXin {
 
+	/**
+	 * http://127.0.0.1:8200/swagger-ui.html#/
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AppWeiXin.class, args);
 	}

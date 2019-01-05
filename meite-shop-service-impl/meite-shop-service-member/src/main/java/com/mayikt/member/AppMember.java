@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
+
 /**
  * @description:
  * @author: liuwq
@@ -16,8 +18,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
+@EnableSwagger2Doc
 public class AppMember {
 
+	/**
+	 * http://127.0.0.1:8300/swagger-ui.html#/
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AppMember.class, args);
 	}

@@ -4,18 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-parent</artifactId>
+		<artifactId>meite-shop-basics</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-service-api</artifactId>
-	<packaging>pom</packaging>
-
-	<modules>
-		<module>meite-shop-service-api-weixin</module>
-		<module>meite-shop-service-api-member</module>
-	</modules>
+	<artifactId>meite-shop-basics-springcloud-zuul</artifactId>
 
 	<dependencies>
+		<!-- zuul -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+		</dependency>
+		
 		<!-- swagger-spring-boot -->
 		<dependency>
 			<groupId>com.spring4all</groupId>
