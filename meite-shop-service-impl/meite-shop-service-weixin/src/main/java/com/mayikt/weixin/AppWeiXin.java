@@ -1,5 +1,6 @@
 package com.mayikt.weixin;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -17,10 +18,12 @@ import com.spring4all.swagger.EnableSwagger2Doc;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableSwagger2Doc
+@EnableApolloConfig
 public class AppWeiXin {
 
 	/**
 	 * http://127.0.0.1:8200/swagger-ui.html#/
+	 * http://localhost:8200/getApp
 	 * @param args
 	 */
 	public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package com.mayikt.weixin.service.impl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mayikt.weixin.entity.AppEntity;
@@ -16,9 +17,12 @@ import com.mayikt.weixin.service.WeiXinAppService;
 @RestController
 public class WeiXinAppServiceImpl implements WeiXinAppService {
 
+	@Value("${mayikt.weixin.app.name}")
+	private String appName;
+
 	@Override
 	public AppEntity getApp() {
-		return new AppEntity("robbieliu", "abc1234");
+		return new AppEntity("1", appName);
 	}
 
 }

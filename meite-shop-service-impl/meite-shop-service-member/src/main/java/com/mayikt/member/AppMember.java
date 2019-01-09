@@ -1,5 +1,6 @@
 package com.mayikt.member;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -19,10 +20,12 @@ import com.spring4all.swagger.EnableSwagger2Doc;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableSwagger2Doc
+@EnableApolloConfig
 public class AppMember {
 
 	/**
 	 * http://127.0.0.1:8300/swagger-ui.html#/
+	 * http://localhost:8300/memberInvokeWeixin
 	 * @param args
 	 */
 	public static void main(String[] args) {
