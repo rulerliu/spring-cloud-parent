@@ -1,26 +1,97 @@
-*.DS_Store
-*.classpath
-*.gitignore
-*.project
-*.settings
-*.launch
-*target
+# Gradle
+build
+.gradle
+
+testdata/
+# Java gitignore #
+.class
+.log
+
+# Package Files #
+
+*.war
+*.ear
+*.gradle
+
+#hsf files
+configuration
+
+# maven gitignore#
+target/**
+
+.svn/
+
+# intelliJ.gitignore #
+.idea
 *.iml
-*.MF
-*.mymetadata
-*META-INF
-/.idea/
-/out/
-/meite-shop-basics/meite-shop-basics-springcloud-eureka/target/
-*.class
-billing_parent/.idea/
-*bin
-env.properties
-log4j.xml
-*.springBeans
-spring-redis2.xml
-rebel.xml
-*.log
+*.ipr
+*.iws
+*.bat
+
+# Eclipse git ignore#
+*.pydevproject
+.project
+.metadata
+bin/**
+*/bin/**
+tmp/**
+tmp/**/*
+configuration/**
+*.tmp
+*.bak
+*.orig
+*.swp
+*~.nib
+.classpath
+.settings/
+.loadpath
+.fileTable*
+.cache
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
 *.launch
-*/src/main/resources/log4j2.xml
-*/src/main/resources/dev.properties
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+#log
+*.log
+*.log.*
+
+# Windows Thumbs.db
+*.db
+
+# OSX
+.DS_Store
+
+# sass gitignore#
+.sass-cache
+.idea
+
+# tcc_coverage
+coverage.ec
+
+
+
+config.client.*
+
+temp/
+*.pid
+*.orig
+
+hsf.configuration/
+
+# code coverage report
+*.ec
+
+#hsf test
+*.instance
+**/target
+.pmd
+**/.pmd
