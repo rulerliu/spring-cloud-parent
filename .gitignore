@@ -11,6 +11,7 @@
 *META-INF
 /.idea/
 /out/
+/meite-shop-basics/meite-shop-basics-springcloud-eureka/target/
 *.class
 billing_parent/.idea/
 *bin
