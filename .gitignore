@@ -18,6 +18,10 @@ configuration
 
 # maven gitignore#
 target/**
+.mvn/
+mvnw
+mvnw.cmd
+.springBeans
 
 .svn/
 
