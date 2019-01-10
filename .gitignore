@@ -21,8 +21,11 @@ target/**
 .mvn/
 mvnw
 mvnw.cmd
+
+# spring files
 .springBeans
 
+# svn files
 .svn/
 
 # intelliJ.gitignore #
