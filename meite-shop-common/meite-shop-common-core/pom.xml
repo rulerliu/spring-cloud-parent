@@ -4,17 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-service-api</artifactId>
+		<artifactId>meite-shop-common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-service-api-weixin</artifactId>
+	<artifactId>meite-shop-common-core</artifactId>
 
 	<dependencies>
-		<!-- 引入weixin entity依赖 -->
+		<!-- 集成redis -->
 		<dependency>
-			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-api-weixin-entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 	</dependencies>

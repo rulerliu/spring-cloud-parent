@@ -22,6 +22,14 @@
 			<artifactId>swagger-spring-boot-starter</artifactId>
 			<version>1.7.0.RELEASE</version>
 		</dependency>
+
+		<!-- common-core -->
+		<dependency>
+			<groupId>com.mayikt</groupId>
+			<artifactId>meite-shop-common-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 

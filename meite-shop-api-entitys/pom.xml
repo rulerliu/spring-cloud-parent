@@ -4,19 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-service-api</artifactId>
+		<artifactId>meite-shop-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-service-api-weixin</artifactId>
+	<artifactId>meite-shop-api-entitys</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>meite-shop-api-weixin-entity</module>
+		<module>meite-shop-api-member-entity</module>
+	</modules>
 
 	<dependencies>
-		<!-- 引入weixin entity依赖 -->
+		<!-- swagger-spring-boot -->
 		<dependency>
-			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-api-weixin-entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>com.spring4all</groupId>
+			<artifactId>swagger-spring-boot-starter</artifactId>
+			<version>1.7.0.RELEASE</version>
 		</dependency>
-
 	</dependencies>
 
 </project>

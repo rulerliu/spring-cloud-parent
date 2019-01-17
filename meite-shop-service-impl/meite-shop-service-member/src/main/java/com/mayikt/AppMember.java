@@ -1,4 +1,4 @@
-package com.mayikt.member;
+package com.mayikt;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;

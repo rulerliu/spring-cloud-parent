@@ -1,9 +1,9 @@
 package com.mayikt.member.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mayikt.base.BaseResponse;
 import com.mayikt.member.feign.WeiXinAppServiceFeign;
 import com.mayikt.member.service.MemberService;
 import com.mayikt.weixin.entity.AppEntity;
@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	 * 会员调用微信服务
 	 */
 	@Override
-	public AppEntity memberInvokeWeixin() {
+	public BaseResponse<AppEntity> memberInvokeWeixin() {
 		return weiXinAppServiceFeign.getApp();
 	}
 
