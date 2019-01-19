@@ -26,7 +26,7 @@
           
 spring:
 #  application:
-#    name: app-mayikt-weixin
+#    name: app-mayikt-member
   redis:
     host: 47.106.190.68
     port: 6379
@@ -42,4 +42,4 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.106.190.68:3306/meite_weixin
+    url: jdbc:mysql://47.106.190.68:3306/meite_member

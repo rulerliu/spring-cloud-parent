@@ -1,6 +1,7 @@
 package com.mayikt.weixin.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mayikt.base.BaseResponse;
@@ -18,10 +19,10 @@ public interface VerificaCodeService {
 	 * 
 	 * @return
 	 */
-	@ApiOperation(value = "根据手机号码验证码token是否正确")
-	@GetMapping("/verificaWeixinCode")
+	@ApiOperation(value = "根据手机号码验证，注册码是否正确")
+	@PostMapping("/verificaWeixinCode")
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", name = "phone", dataType = "String", required = true, value = "用户手机号码"),
 			@ApiImplicitParam(paramType = "query", name = "weixinCode", dataType = "String", required = true, value = "微信注册码") })
-	public BaseResponse<JSONObject> verificaWeixinCode(String phone, String weixinCode);
+	public BaseResponse<JSONObject> verificaWeixinCode(@RequestParam("phone") String phone, @RequestParam("weixinCode") String weixinCode);
 }

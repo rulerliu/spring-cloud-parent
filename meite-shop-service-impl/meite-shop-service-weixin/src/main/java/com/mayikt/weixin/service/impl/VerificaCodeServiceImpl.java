@@ -16,6 +16,9 @@ public class VerificaCodeServiceImpl extends BaseApiService<JSONObject> implemen
 	@Autowired
 	private RedisUtil redisUtil;
 
+	/**
+	 * 根据手机号码验证，注册码是否正确
+	 */
 	@Override
 	public BaseResponse<JSONObject> verificaWeixinCode(String phone, String weixinCode) {
 		// 1.判断参数是否为空

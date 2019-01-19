@@ -1,11 +1,16 @@
 package com.mayikt.member.service;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mayikt.base.BaseResponse;
+import com.mayikt.member.entity.UserEntity;
 import com.mayikt.weixin.entity.AppEntity;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -20,11 +25,15 @@ import io.swagger.annotations.ApiOperation;
 public interface MemberService {
 
 	/**
-	 * 会员服务接口调用微信接口
+	 * 根据手机号码查询是否已经存在,如果存在返回当前用户信息
+	 * 
+	 * @param mobile
 	 * @return
 	 */
-	@GetMapping("/memberInvokeWeixin")
-	@ApiOperation("会员服务调用微信服务接口")
-	public BaseResponse<AppEntity> memberInvokeWeixin();
+	@ApiOperation(value = "根据手机号码查询是否已经存在")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", name = "mobile", dataType = "String", required = true, value = "用户手机号码"), })
+	@PostMapping("/existMobile")
+	BaseResponse<UserEntity> existMobile(@RequestParam("mobile") String mobile);
 	
 }

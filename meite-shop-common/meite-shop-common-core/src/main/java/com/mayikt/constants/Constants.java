@@ -24,5 +24,7 @@ public interface Constants {
 	String WEIXINCODE_KEY = "weixin.code";
 	// 微信注册码有效期30分钟
 	Long WEIXINCODE_TIMEOUT = 1800l;
+	
+	Integer HTTP_RES_CODE_EXISTMOBILE_203 = 203;
 
 }

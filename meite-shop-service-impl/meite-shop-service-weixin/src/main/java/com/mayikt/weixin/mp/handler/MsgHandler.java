@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.mayikt.base.BaseResponse;
 import com.mayikt.constants.Constants;
 import com.mayikt.core.utils.RedisUtil;
 import com.mayikt.core.utils.RegexUtils;
+import com.mayikt.member.entity.UserEntity;
+import com.mayikt.weixin.feign.MemberServiceFeign;
 import com.mayikt.weixin.mp.builder.TextBuilder;
 
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
@@ -38,6 +41,9 @@ public class MsgHandler extends AbstractHandler {
 	
 	@Autowired
 	private RedisUtil redisUtil;
+	
+	@Autowired
+	private MemberServiceFeign memberServiceFeign;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -65,6 +71,16 @@ public class MsgHandler extends AbstractHandler {
         String phoneNum = wxMessage.getContent();
         // 2.判断内容格式
         if (RegexUtils.checkMobile(phoneNum)) {
+        	// 检查手机号码是否已注册
+        	BaseResponse<UserEntity> userEntityInfo = memberServiceFeign.existMobile(phoneNum);
+        	if (Constants.HTTP_RES_CODE_200.equals(userEntityInfo.getCode())) {
+        		return new TextBuilder().build("该手机号码：" + phoneNum + "已经注册了", wxMessage, weixinService);
+        	}
+        	
+        	if (!Constants.HTTP_RES_CODE_EXISTMOBILE_203.equals(userEntityInfo.getCode())) {
+        		return new TextBuilder().build(userEntityInfo.getMsg(), wxMessage, weixinService);
+        	}
+        	
         	// 3.如果是手机号码格式，生成4位随机数注册码
         	int registCode = getRegistCode();
         	// 4.把注册码存放到redis，有效期30分钟
