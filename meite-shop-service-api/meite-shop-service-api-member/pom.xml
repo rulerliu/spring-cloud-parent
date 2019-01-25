@@ -13,14 +13,14 @@
 		<!-- 引入weixin api -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-service-api-weixin</artifactId>
+			<artifactId>meite-shop-api-weixin-dto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<!-- 引入member entity依赖 -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-api-member-entity</artifactId>
+			<artifactId>meite-shop-api-member-dto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

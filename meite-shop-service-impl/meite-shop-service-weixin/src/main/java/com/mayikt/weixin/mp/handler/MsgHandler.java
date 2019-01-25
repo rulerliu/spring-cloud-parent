@@ -1,26 +1,24 @@
 package com.mayikt.weixin.mp.handler;
 
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import com.mayikt.base.BaseResponse;
 import com.mayikt.constants.Constants;
 import com.mayikt.core.utils.RedisUtil;
 import com.mayikt.core.utils.RegexUtils;
-import com.mayikt.member.entity.UserEntity;
+import com.mayikt.member.output.dto.UserOutDTO;
 import com.mayikt.weixin.feign.MemberServiceFeign;
 import com.mayikt.weixin.mp.builder.TextBuilder;
-
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * @author Binary Wang(https://github.com/binarywang)
@@ -72,13 +70,13 @@ public class MsgHandler extends AbstractHandler {
         // 2.判断内容格式
         if (RegexUtils.checkMobile(phoneNum)) {
         	// 检查手机号码是否已注册
-        	BaseResponse<UserEntity> userEntityInfo = memberServiceFeign.existMobile(phoneNum);
-        	if (Constants.HTTP_RES_CODE_200.equals(userEntityInfo.getCode())) {
+			BaseResponse<UserOutDTO> userOutDTO = memberServiceFeign.existMobile(phoneNum);
+			if (Constants.HTTP_RES_CODE_200.equals(userOutDTO.getCode())) {
         		return new TextBuilder().build("该手机号码：" + phoneNum + "已经注册了", wxMessage, weixinService);
         	}
         	
-        	if (!Constants.HTTP_RES_CODE_EXISTMOBILE_203.equals(userEntityInfo.getCode())) {
-        		return new TextBuilder().build(userEntityInfo.getMsg(), wxMessage, weixinService);
+        	if (!Constants.HTTP_RES_CODE_EXISTMOBILE_203.equals(userOutDTO.getCode())) {
+        		return new TextBuilder().build(userOutDTO.getMsg(), wxMessage, weixinService);
         	}
         	
         	// 3.如果是手机号码格式，生成4位随机数注册码
@@ -106,7 +104,8 @@ public class MsgHandler extends AbstractHandler {
  	public static void main(String[] args) {
 		String test = "haklsdjajlfkjslkaf%sksldjjdlf";
 		String format = String.format(test, 1234567);
-		System.out.println(format);// haklsdjajlfkjslkaf1234567ksldjjdlf
+		// haklsdjajlfkjslkaf1234567ksldjjdlf
+		System.out.println(format);
 	}
  	
 }

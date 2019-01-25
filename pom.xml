@@ -13,8 +13,8 @@
 		<module>meite-shop-service-impl</module>
 		<module>meite-shop-common</module>
 		<module>meite-shop-portal</module>
-		<module>meite-shop-api-entitys</module>
-	</modules>
+        <module>meite-shop-api-dto</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

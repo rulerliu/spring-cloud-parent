@@ -1,11 +1,11 @@
 package com.mayikt.weixin.service.impl;
 
+import com.mayikt.weixin.output.dto.AppOutDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mayikt.base.BaseApiService;
 import com.mayikt.base.BaseResponse;
-import com.mayikt.weixin.entity.AppEntity;
 import com.mayikt.weixin.service.WeiXinAppService;
 
 /**
@@ -17,14 +17,14 @@ import com.mayikt.weixin.service.WeiXinAppService;
  *            私自分享视频和源码属于违法行为。
  */
 @RestController
-public class WeiXinAppServiceImpl extends BaseApiService<AppEntity> implements WeiXinAppService {
+public class WeiXinAppServiceImpl extends BaseApiService<AppOutDTO> implements WeiXinAppService {
 
 	@Value("${mayikt.weixin.app.name}")
 	private String appName;
 
 	@Override
-	public BaseResponse<AppEntity> getApp() {
-		return setResultSuccess(new AppEntity("1", "liuwq"));
+	public BaseResponse<AppOutDTO> getApp() {
+		return setResultSuccess(new AppOutDTO("1", "liuwq"));
 	}
 
 }

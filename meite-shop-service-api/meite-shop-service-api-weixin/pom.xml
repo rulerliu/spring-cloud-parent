@@ -13,7 +13,7 @@
 		<!-- 引入weixin entity依赖 -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-api-weixin-entity</artifactId>
+			<artifactId>meite-shop-api-weixin-dto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

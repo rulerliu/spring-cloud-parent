@@ -1,12 +1,10 @@
 package com.mayikt.weixin.service;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import com.mayikt.base.BaseResponse;
-import com.mayikt.weixin.entity.AppEntity;
-
+import com.mayikt.weixin.output.dto.AppOutDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @description:
@@ -24,6 +22,6 @@ public interface WeiXinAppService {
 	 */
 	@ApiOperation("查询微信服务详情接口")
 	@GetMapping("/getApp")
-	public BaseResponse<AppEntity> getApp();
+	BaseResponse<AppOutDTO> getApp();
 
 }
