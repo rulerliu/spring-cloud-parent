@@ -1,4 +1,4 @@
-package com.mayikt.bean.utils;
+package com.mayikt.core.bean.utils;
 
 import org.springframework.beans.BeanUtils;
 

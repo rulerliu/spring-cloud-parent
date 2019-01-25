@@ -1,10 +1,10 @@
 package com.mayikt.core.utils;
 
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisUtil {
@@ -57,7 +57,7 @@ public class RedisUtil {
 	 * 
 	 * @param key
 	 */
-	public void delKey(String key) {
-		stringRedisTemplate.delete(key);
+	public Boolean delKey(String key) {
+		return stringRedisTemplate.delete(key);
 	}
 }

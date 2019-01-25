@@ -14,7 +14,7 @@ public interface MemberRegisterService {
 	/**
 	 * 用户注册接口
 	 * 
-	 * @param userEntity
+	 * @param userInpDTO
 	 * @return
 	 */
 	@PostMapping("/register")

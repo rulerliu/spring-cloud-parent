@@ -14,7 +14,7 @@ public class UserOutDTO {
 	 * userid
 	 */
 	@ApiModelProperty(value = "用户id")
-	private Long userid;
+	private Long userId;
 	/**
 	 * 手机号码
 	 */
