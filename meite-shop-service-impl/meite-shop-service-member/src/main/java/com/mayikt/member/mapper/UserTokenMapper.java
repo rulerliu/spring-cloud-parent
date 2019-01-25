@@ -35,6 +35,6 @@ public interface UserTokenMapper {
 	 * @param userTokenDo
 	 * @return
 	 */
-	@Insert("    INSERT INTO `meite_user_token`(user_id, token, logint_type, device_infor, is_availability) VALUES (#{userId}, #{token},#{loginType}, #{deviceInfor}, 0); ")
+	@Insert("    INSERT INTO `meite_user_token`(user_id, token, login_type, device_infor, is_availability) VALUES (#{userId}, #{token},#{loginType}, #{deviceInfor}, 0); ")
 	int insertUserToken(UserTokenDO userTokenDo);
 }
