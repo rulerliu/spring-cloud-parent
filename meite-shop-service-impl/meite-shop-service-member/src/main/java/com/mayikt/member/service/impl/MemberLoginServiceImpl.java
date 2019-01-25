@@ -8,7 +8,9 @@ import com.mayikt.core.token.GenerateToken;
 import com.mayikt.core.utils.MD5Util;
 import com.mayikt.member.input.dto.UserLoginInpDTO;
 import com.mayikt.member.mapper.UserMapper;
+import com.mayikt.member.mapper.UserTokenMapper;
 import com.mayikt.member.mapper.entity.UserDO;
+import com.mayikt.member.mapper.entity.UserTokenDO;
 import com.mayikt.member.service.MemberLoginService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
 
     @Autowired
     private GenerateToken generateToken;
+
+    @Autowired
+    private UserTokenMapper userTokenMapper;
 
     @Override
     public BaseResponse<JSONObject> login(@RequestBody UserLoginInpDTO userLoginInpDTO) {
@@ -62,10 +67,26 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
             return setResultError("用户名或者密码错误！");
         }
 
-        // 4.用户登录一次，生成一个token，存放在redis中，key：token，value：userId
+        // 唯一登录
+        // 判断当前手机号之前是否登录过，如果登录过，移除redis中的token，修改之前的状态为不可用，并且生成一个新的可用token
         Long userId = userDO.getUserId();
+        UserTokenDO userTokenDO = userTokenMapper.selectByUserIdAndLoginType(userId, loginType);
+        if (userTokenDO != null) {
+            String token = userTokenDO.getToken();
+            Boolean removeToken = generateToken.removeToken(token);
+            userTokenMapper.updateTokenAvailability(token);
+        }
+
+        // 4.用户登录生成token，存放在redis中，key：token，value：userId
         String token = generateToken.createToken(MemberLoginConstants.MEMBER_TOKEN_KEYPREFIX, userId + "",
                 MemberLoginConstants.MEMBRE_LOGIN_TOKEN_TIME);
+
+        UserTokenDO newUserTokenDO = new UserTokenDO();
+        newUserTokenDO.setUserId(userId);
+        newUserTokenDO.setLoginType(loginType);
+        newUserTokenDO.setToken(token);
+        newUserTokenDO.setDeviceInfor(userLoginInpDTO.getDeviceInfor());
+        userTokenMapper.insertUserToken(newUserTokenDO);
 
         JSONObject data = new JSONObject();
         data.put("token", token);
