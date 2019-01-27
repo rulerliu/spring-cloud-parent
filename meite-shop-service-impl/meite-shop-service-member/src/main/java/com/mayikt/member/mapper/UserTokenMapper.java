@@ -21,8 +21,7 @@ public interface UserTokenMapper {
 
 	/**
 	 * 根据token更新可用状态
-	 * @param userId
-	 * @param loginType
+	 * @param token
 	 * @return
 	 */
 	@Update("    update meite_user_token set is_availability ='1',update_time=now()   where token =#{token} ")

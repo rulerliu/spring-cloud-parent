@@ -13,6 +13,30 @@ public class RedisUtil {
 	private StringRedisTemplate stringRedisTemplate;
 
 	/**
+	 * 开启redis事务
+	 */
+	public void begin() {
+		// 开始redis 事务权限
+		stringRedisTemplate.setEnableTransactionSupport(true);
+		// 开启事务
+		stringRedisTemplate.multi();
+	}
+
+    /**
+     * 提交redis事务
+     */
+	public void exec() {
+        stringRedisTemplate.exec();
+    }
+
+    /**
+     * 回滚redis 事务
+     */
+    public void discard() {
+        stringRedisTemplate.discard();
+    }
+
+    /**
 	 * 存放string类型
 	 * 
 	 * @param key
