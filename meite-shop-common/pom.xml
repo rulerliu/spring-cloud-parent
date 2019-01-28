@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>meite-shop-common-core</module>
+        <module>meite-shop-common-web-core</module>
     </modules>
 
     <dependencies>
