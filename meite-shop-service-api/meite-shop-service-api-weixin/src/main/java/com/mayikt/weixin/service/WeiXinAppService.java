@@ -23,5 +23,8 @@ public interface WeiXinAppService {
 	@ApiOperation("查询微信服务详情接口")
 	@GetMapping("/getApp")
 	BaseResponse<AppOutDTO> getApp();
+	
+	@GetMapping("/qqLoginBack")
+	BaseResponse<AppOutDTO> qqLoginBack(String code);
 
 }

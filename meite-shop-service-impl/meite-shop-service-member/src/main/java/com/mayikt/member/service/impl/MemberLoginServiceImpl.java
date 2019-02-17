@@ -88,10 +88,15 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
                     return setResultError("系统错误");
                 }
             }
+            
+            String qqOpenId = userLoginInpDTO.getQqOpenId();
+            if (!StringUtils.isBlank(qqOpenId)) {
+            	userMapper.updateUserOpenId(qqOpenId, userId);
+            }
 
             // 4.用户登录生成token，存放在redis中，key：token，value：userId
-            String token = generateToken.createToken(MemberLoginConstants.MEMBER_TOKEN_KEYPREFIX + loginType,
-                    userId + "", MemberLoginConstants.MEMBRE_LOGIN_TOKEN_TIME);
+            String kePrefix = MemberLoginConstants.MEMBER_TOKEN_KEYPREFIX + loginType;
+            String token = generateToken.createToken(kePrefix, userId + "", MemberLoginConstants.MEMBRE_LOGIN_TOKEN_TIME);
 
             UserTokenDO newUserTokenDO = new UserTokenDO();
             newUserTokenDO.setUserId(userId);

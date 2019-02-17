@@ -2,7 +2,6 @@ package com.mayikt.member.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mayikt.base.BaseResponse;
-import com.mayikt.constants.Constants;
 import com.mayikt.constants.MemberLoginConstants;
 import com.mayikt.constants.PageConstants;
 import com.mayikt.member.controller.req.vo.LoginVO;

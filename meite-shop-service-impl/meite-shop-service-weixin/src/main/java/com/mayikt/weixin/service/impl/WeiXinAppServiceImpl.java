@@ -27,4 +27,9 @@ public class WeiXinAppServiceImpl extends BaseApiService<AppOutDTO> implements W
 		return setResultSuccess(new AppOutDTO("1", "liuwq"));
 	}
 
+	@Override
+	public BaseResponse<AppOutDTO> qqLoginBack(String code) {
+		return setResultSuccess(new AppOutDTO("1", code));
+	}
+
 }

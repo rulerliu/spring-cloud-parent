@@ -1,9 +1,11 @@
 package com.mayikt.member.mapper;
 
-import com.mayikt.member.mapper.entity.UserDO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
+
+import com.mayikt.member.mapper.entity.UserDO;
 
 public interface UserMapper {
 
@@ -41,6 +43,24 @@ public interface UserMapper {
 	@Select("SELECT USER_ID AS USERID ,MOBILE AS MOBILE,EMAIL AS EMAIL,PASSWORD AS PASSWORD, USER_NAME AS USER_NAME ,SEX AS SEX ,AGE AS AGE ,CREATE_TIME AS CREATETIME,IS_AVALIBLE AS ISAVALIBLE,PIC_IMG AS PICIMG,QQ_OPENID AS QQOPENID,WX_OPENID AS WXOPENID"
 			+ " FROM meite_user WHERE user_Id = #{userId}")
 	UserDO findByUserId(@Param("userId") Long userId);
+
+	/**
+	 * 根据qq_openid查询
+	 * @param qqOpenId
+	 * @return
+	 */
+	@Select("SELECT USER_ID AS USERID ,MOBILE AS MOBILE,EMAIL AS EMAIL,PASSWORD AS PASSWORD, USER_NAME AS USER_NAME ,SEX AS SEX ,AGE AS AGE ,CREATE_TIME AS CREATETIME,IS_AVALIBLE AS ISAVALIBLE,PIC_IMG AS PICIMG,QQ_OPENID AS QQOPENID,WX_OPENID AS WXOPENID"
+			+ " FROM meite_user WHERE qq_openid=#{qqOpenId}")
+	UserDO findByOpenId(@Param("qqOpenId") String qqOpenId);
+
+	/**
+	 * 根据userId修改qqOpenId
+	 * @param qqOpenId
+	 * @param userId
+	 * @return
+	 */
+	@Update("update meite_user set QQ_OPENID = #{0} WHERE USER_ID = #{1}")
+	int updateUserOpenId(@Param("qqOpenId") String qqOpenId, @Param("userId") Long userId);
 
 
 }

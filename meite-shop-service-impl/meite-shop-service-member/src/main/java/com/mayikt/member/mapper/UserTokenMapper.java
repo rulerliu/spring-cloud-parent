@@ -20,7 +20,7 @@ public interface UserTokenMapper {
 	UserTokenDO selectByUserIdAndLoginType(@Param("userId") Long userId, @Param("loginType") String loginType);
 
 	/**
-	 * 根据token更新可用状态
+	 * 根据token更新状态为1
 	 * @param token
 	 * @return
 	 */
