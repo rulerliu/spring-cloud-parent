@@ -1,0 +1,15 @@
+微信登录步骤：
+微信公众平台 --> 开发者工具 --> 公众平台测试账号 --> 网页授权获取用户基本信息(修改回调地址，不需要带/getApp，如 127.0.0.1:8200)
+
+
+1：根据appid和redireci_uri获取授权码code
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx54bd1f8cb7f2b938&redirect_uri=http://127.0.0.1:8200/getApp&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
+
+2：根据code获取access_toke和openid
+https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx54bd1f8cb7f2b938&secret=c8fcb85975e785494e3ef2cc5556d546&code=001BUGr01sxMYW1ndLp01fvor01BUGr9&state=1&grant_type=authorization_code
+
+3：根据refresh_token刷新access_token（非必须）
+https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wx54bd1f8cb7f2b938&grant_type=refresh_token&refresh_token=18_eWUSKEl48LjFFeCIs4M1kIUODhqyKroPAIrTdRYuyRNqo_kLhxKW4RZzcuZ7UWR2z9Hy1m8gkc26mes7tD0VUw
+
+4：根据access_token和openid获取用户信息
+https://api.weixin.qq.com/sns/userinfo?access_token=18_7SFnbSKbSEwWqQLi7I4MuuS2PREnyCD4uROuqAoE65PwN3jciktuH7m2CvRnZs6LY3R3dsows1QwYo4LUCefvw&openid=o9DVc1BS5HoY3d5qUbVXO9sDr74A&lang=zh_CN
