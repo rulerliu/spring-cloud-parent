@@ -23,3 +23,22 @@ eureka:
     service-url:
       #defaultZone: http://127.0.0.1:8100/eureka
       defaultZone: http://192.168.128.129:8080/eureka
+
+redis:
+  hostname: 120.79.251.42
+  port: 6379
+  password: 123456
+  
+      
+xxl-sso:
+  excluded:
+    paths: 
+xxl:
+  sso:
+    server: http://xxlssoserver.com:8080/xxl-sso-server
+    logout:
+      path: /logout
+    redis:
+      address: redis://120.79.251.42:6379
+      
+logging.level.org.springframework.boot.autoconfigure: ERROR

@@ -12,33 +12,13 @@
     <artifactId>meite-shop-portal-web</artifactId>
 
     <dependencies>
-        <!--整合freemarker -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-
-        <!--引入common-web依赖 -->
-        <dependency>
-            <groupId>com.mayikt</groupId>
-            <artifactId>meite-shop-common-web-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- 引入member api -->
-        <dependency>
-            <groupId>com.mayikt</groupId>
-            <artifactId>meite-shop-service-api-member</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        
         <!-- 引入oauth2.0 sdk -->
         <dependency>
             <groupId>com.tengxun</groupId>
             <artifactId>sdk4j</artifactId>
             <version>1.0</version>
         </dependency>
-
+        
     </dependencies>
 
 </project>
