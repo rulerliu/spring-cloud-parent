@@ -36,6 +36,8 @@ public class ProductSearchServiceImpl extends BaseApiService<List<ProductOutDTO>
 
 	@Override
 	public BaseResponse<List<ProductOutDTO>> search(String name) {
+		int i = 1 / 0;
+		
 		// 1. 拼接查询条件
 		BoolQueryBuilder builder = QueryBuilders.boolQuery();
 		// 2. 模拟查询name字段

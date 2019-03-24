@@ -37,5 +37,12 @@
 			<version>1.5.2</version>
 		</dependency>
 
+		<!-- elk + kafka -->
+		<dependency>
+			<groupId>com.mayikt</groupId>
+			<artifactId>meite-shop-basics-elk-kafka</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 </project>
