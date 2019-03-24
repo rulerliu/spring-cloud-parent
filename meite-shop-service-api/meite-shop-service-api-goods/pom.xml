@@ -4,27 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-parent</artifactId>
+		<artifactId>meite-shop-service-api</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-service-api</artifactId>
-	<packaging>pom</packaging>
-
-	<modules>
-		<module>meite-shop-service-api-weixin</module>
-		<module>meite-shop-service-api-member</module>
-		<module>meite-shop-service-api-goods</module>
-	</modules>
+	<artifactId>meite-shop-service-api-goods</artifactId>
 
 	<dependencies>
-		<!-- common-core -->
+		<!-- 引入member dto -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-common-core</artifactId>
+			<artifactId>meite-shop-api-product-dto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
 	</dependencies>
-
 
 </project>

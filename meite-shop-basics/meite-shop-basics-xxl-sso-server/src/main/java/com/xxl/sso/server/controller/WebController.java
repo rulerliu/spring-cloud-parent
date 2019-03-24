@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +32,16 @@ import com.xxl.sso.server.feign.MemberServiceFeign;
 @Controller
 public class WebController extends BaseWebController {
 	
+	@Value("${server.port}")
+	private String serverPort;
+	
 	@Autowired
 	private MemberServiceFeign memberServiceFeign;
 
     @RequestMapping("/")
     public String index(Model model, HttpServletRequest request, HttpServletResponse response) {
-
+    	System.out.println("serverPort:" + serverPort);
+    	
         // login check
         XxlSsoUser xxlUser = SsoWebLoginHelper.loginCheck(request, response);
 

@@ -1,0 +1,34 @@
+###服务启动端口号
+server:
+  port: 8500
+###服务名称(服务注册到eureka名称)  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.106.190.68:8100/eureka
+  
+spring:
+  application:
+    name:  app-mayikt-goods
+  redis:
+    port: 6379
+    host: 120.79.251.42
+    password: 123456
+    jedis:
+      pool:
+        max-idle: 100
+        min-idle: 1
+        max-active: 1000
+        max-wait: -1
+###数据库相关连接      
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.106.190.68:3306/meite_product?useUnicode=true&characterEncoding=utf-8
+  data:
+    elasticsearch:
+    ####集群名称
+     cluster-name: elasticsearch-cluster
+    ####地址 
+     cluster-nodes: 192.168.128.130:9300
