@@ -4,15 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-portal</artifactId>
+		<artifactId>meite-shop-service-api</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-portal-pay-web</artifactId>
+	<artifactId>meite-shop-service-api-pay</artifactId>
 
 	<dependencies>
+		<!-- 引入member dto -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
-			<artifactId>meite-shop-service-api-pay</artifactId>
+			<artifactId>meite-shop-api-pay-dto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

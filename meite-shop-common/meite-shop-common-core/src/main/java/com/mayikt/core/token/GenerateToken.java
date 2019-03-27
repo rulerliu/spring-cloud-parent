@@ -9,11 +9,12 @@ import java.util.UUID;
 
 @Component
 public class GenerateToken {
+	
 	@Autowired
 	private RedisUtil redisUtil;
 
 	/**
-	 * 生成令牌
+	 * 生成令牌，并存放在redis中
 	 * 
 	 * @param keyPrefix 令牌key前缀
 	 * @param redisValue redis存放的值
@@ -24,7 +25,7 @@ public class GenerateToken {
 	}
 
 	/**
-	 * 生成令牌
+	 * 生成令牌，并存放在redis中
 	 * 
 	 * @param keyPrefix 令牌key前缀
 	 * @param redisValue redis存放的值
@@ -56,7 +57,7 @@ public class GenerateToken {
 	}
 
 	/**
-	 * 移除token
+	 * 移除redis中的token
 	 * 
 	 * @param token
 	 * @return

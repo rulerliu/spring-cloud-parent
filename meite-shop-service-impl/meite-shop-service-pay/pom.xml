@@ -4,12 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mayikt</groupId>
-		<artifactId>meite-shop-portal</artifactId>
+		<artifactId>meite-shop-service-impl</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>meite-shop-portal-pay-web</artifactId>
+	<artifactId>meite-shop-service-pay</artifactId>
 
 	<dependencies>
+		<!-- 引入weixin api -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
 			<artifactId>meite-shop-service-api-pay</artifactId>

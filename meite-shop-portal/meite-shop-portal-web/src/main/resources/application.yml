@@ -22,14 +22,14 @@ eureka:
   client:
     service-url:
       #defaultZone: http://127.0.0.1:8100/eureka
-      defaultZone: http://192.168.128.129:8080/eureka
+      #defaultZone: http://192.168.128.129:8080/eureka
+      defaultZone: http://47.106.190.68:8100/eureka
 
 redis:
-  hostname: 120.79.251.42
+  hostname: 47.106.190.68
   port: 6379
   password: 123456
   
-      
 xxl-sso:
   excluded:
     paths: 

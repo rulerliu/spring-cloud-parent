@@ -1,6 +1,6 @@
 ###服务启动端口号
 server:
-  port: 8500
+  port: 8600
 ###服务名称(服务注册到eureka名称)  
 eureka:
   client:
@@ -9,7 +9,7 @@ eureka:
   
 spring:
   application:
-    name:  app-mayikt-goods
+    name:  app-mayikt-pay
   redis:
     port: 6379
     host: 47.106.190.68
@@ -25,13 +25,4 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.106.190.68:3306/meite_product?useUnicode=true&characterEncoding=utf-8
-  data:
-    elasticsearch:
-    ####集群名称
-     cluster-name: elasticsearch-cluster
-    ####地址 
-     cluster-nodes: 192.168.128.130:9300
-  ### kafka地址
-  kafka:
-    bootstrap-servers: 47.106.190.68:9092
+    url: jdbc:mysql://47.106.190.68:3306/meite_pay?useUnicode=true&characterEncoding=utf-8
