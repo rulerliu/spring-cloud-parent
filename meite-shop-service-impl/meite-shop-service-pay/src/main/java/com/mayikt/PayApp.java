@@ -26,6 +26,10 @@ public class PayApp {
 
 	/**
 	 * http://127.0.0.1:8600/cratePayToken?payAmount=20000&orderId=1234567890&userId=1234
+	 *
+	 * http://127.0.0.1:8600/tokenByPayMentTransac?token=
+	 *
+	 * http://127.0.0.1:8600/toPayHtml?channelId=yinlian_pay&payToken=
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(PayApp.class, args);

@@ -20,7 +20,7 @@ public class BaseWebController {
 		if (baseResp == null) {
 			return false;
 		}
-		if (baseResp.getCode().equals(Constants.HTTP_RES_CODE_500)) {
+		if (Constants.HTTP_RES_CODE_500.equals(baseResp.getCode())) {
 			return false;
 		}
 		return true;

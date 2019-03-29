@@ -23,6 +23,6 @@ spring:
 ###数据库相关连接      
   datasource:
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.106.190.68:3306/meite_pay?useUnicode=true&characterEncoding=utf-8
