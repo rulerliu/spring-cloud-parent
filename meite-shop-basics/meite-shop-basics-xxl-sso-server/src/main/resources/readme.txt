@@ -1,0 +1,2 @@
+打jar包方式
+mvn install:install-file -Dfile=D:\Java\meite-shop-workspace\xxl-sso-master\xxl-sso-core\target\xxl-sso-core-1.1.1-SNAPSHOT.jar -DgroupId=com.xuxueli -DartifactId=xxl-sso-core -Dversion=1.1.1-SNAPSHOT -Dpackaging=jar
