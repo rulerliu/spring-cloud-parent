@@ -1,19 +1,22 @@
 package com.mayikt.pay.controller;
 
-import java.util.List;
-
+import com.alibaba.fastjson.JSONObject;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.pay.feign.PayContextFeign;
+import com.mayikt.pay.feign.PayMentTransacInfoFeign;
+import com.mayikt.pay.feign.PaymentChannelFeign;
+import com.mayikt.pay.output.dto.PayMentTransacOutDTO;
+import com.mayikt.pay.output.dto.PaymentChannelOutDTO;
+import com.mayikt.web.base.BaseWebController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mayikt.base.BaseResponse;
-import com.mayikt.pay.feign.PayMentTransacInfoFeign;
-import com.mayikt.pay.feign.PaymentChannelFeign;
-import com.mayikt.pay.output.dto.PayMentTransacOutDTO;
-import com.mayikt.pay.output.dto.PaymentChannelOutDTO;
-import com.mayikt.web.base.BaseWebController;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @description:
@@ -31,6 +34,9 @@ public class PayController extends BaseWebController {
 	
 	@Autowired
 	private PaymentChannelFeign paymentChannelFeign;
+
+	@Autowired
+	private PayContextFeign payContextFeign;
 	
 	@RequestMapping("/")
 	public String index() {
@@ -59,7 +65,26 @@ public class PayController extends BaseWebController {
 		// 4.查询渠道信息
 		List<PaymentChannelOutDTO> paymentChanneList = paymentChannelFeign.selectAll();
 		model.addAttribute("paymentChanneList", paymentChanneList);
+		model.addAttribute("payToken", payToken);
 		return "index";
+	}
+
+	/**
+	 *
+	 * @param payToken
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping("/payHtml")
+	public void payHtml(String channelId, String payToken, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=utf-8");
+		BaseResponse<JSONObject> payHtmlData = payContextFeign.toPayHtml(channelId, payToken);
+		if (isSuccess(payHtmlData)) {
+			JSONObject data = payHtmlData.getData();
+			String payHtml = data.getString("payHtml");
+			response.getWriter().print(payHtml);
+		}
+
 	}
 	
 }

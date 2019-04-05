@@ -1,9 +1,5 @@
-
-
-
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -169,12 +165,12 @@ body {
 				<hr />
 				<div class="scent-pay-type">
 					<#list paymentChanneList as p>
-					<a href="/channel?channelId=${p.channelId}"><button
+						<a href="/payHtml?channelId=${p.channelId}&payToken=${payToken}"><button
 							class="layui-btn layui-btn-primary layui-btn-lg">
 							<i class="layui-icon layui-icon-rmb" style="color: #1E9FFF"></i>
 							${p.channelName}
 						</button></a>
-						</#list>
+					</#list>
 				</div>
 
 			</div>

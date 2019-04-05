@@ -13,7 +13,7 @@ spring:
   redis:
     port: 6379
     host: 47.106.190.68
-    password: 123456
+    password: 729754701
     jedis:
       pool:
         max-idle: 100
@@ -23,7 +23,7 @@ spring:
 ###数据库相关连接      
   datasource:
     username: root
-    password: root
+    password: 729754701
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.106.190.68:3306/meite_product?useUnicode=true&characterEncoding=utf-8
   data:

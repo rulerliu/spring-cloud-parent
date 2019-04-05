@@ -28,7 +28,7 @@ eureka:
 redis:
   hostname: 47.106.190.68
   port: 6379
-  password: 123456
+  password: 729754701
 
 xxl-sso:
   excluded:

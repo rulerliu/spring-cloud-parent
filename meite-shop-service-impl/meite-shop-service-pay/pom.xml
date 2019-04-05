@@ -16,6 +16,20 @@
 			<artifactId>meite-shop-service-api-pay</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!-- 引入unionpay plugin -->
+		<dependency>
+			<groupId>com.mayikt</groupId>
+			<artifactId>meite-shop-unionpay-plugin</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- 引入alipay plugin -->
+		<dependency>
+			<groupId>com.mayikt</groupId>
+			<artifactId>meite-shop-alipay-plugin</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>

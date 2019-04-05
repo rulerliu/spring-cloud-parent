@@ -23,7 +23,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class AppPayWebPortal {
 
 	/**
-	 * http://127.0.0.1:8080/index.html
+	 * http://127.0.0.1:8050/pay?payToken=
 	 * @param args
 	 */
 	public static void main(String[] args) {
