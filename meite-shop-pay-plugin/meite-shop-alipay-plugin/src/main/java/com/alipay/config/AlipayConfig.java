@@ -23,7 +23,8 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4NrY7pyZYozo2WVc5DQrGISPBOw5ISER73w3k4/m4AsB49+63byWrct/C2SRVBgsM6JidYkNYEvhtZG/4xqh7+cU5wGrz+8HcIVhNW3IrSn6N32DjcOuJ4XkU0+9eFegLPfsTqwUJJqtxge2kkDicV72UXlNRwqwCKkIxLVjZnMmOyyxcCzSzkvhrDSLYWRdkwFppSq1VUwdAuZ09dqoD++L6oS43CEw6/2edzWEziF6dGNixTJ2oaZu0l3x0gBZLOsAIYS4KaVG932UF+j4cOiDMcC7eB2WJRT9BJo7ALckArnByKJnPY97e69OVmLqN38fJBl+6RkZNf+LmWb9KwIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://4rhi5d.natappfree.cc/notify_url.jsp";
+//    public static String notify_url = "http://4rhi5d.natappfree.cc/notify_url.jsp";
+    public static String notify_url = "http://6gm47v.natappfree.cc/aliPayAsynCallback";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url = "http://4rhi5d.natappfree.cc/return_url.jsp";

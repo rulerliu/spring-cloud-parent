@@ -83,10 +83,10 @@ public class UnionPayStrategyImpl implements PayStrategy {
         //////////////////////////////////////////////////
 
         /**请求参数设置完毕，以下对请求参数进行签名并生成html表单，将表单写入浏览器跳转打开银联页面**/
-        Map<String, String> submitFromData = AcpService.sign(requestData,DemoBase.encoding);  //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
+        Map<String, String> submitFromData = AcpService.sign(requestData, DemoBase.encoding);  //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
 
         String requestFrontUrl = SDKConfig.getConfig().getFrontRequestUrl();  //获取请求银联的前台地址：对应属性文件acp_sdk.properties文件中的acpsdk.frontTransUrl
-        String html = AcpService.createAutoFormHtml(requestFrontUrl, submitFromData,DemoBase.encoding);   //生成自动跳转的Html表单
+        String html = AcpService.createAutoFormHtml(requestFrontUrl, submitFromData, DemoBase.encoding);   //生成自动跳转的Html表单
 
         LogUtil.writeLog("打印请求HTML，此为请求报文，为联调排查问题的依据："+html);
         //将生成的html写到浏览器中完成自动跳转打开银联支付页面；这里调用signData之后，将html写到浏览器跳转到银联页面之前均不能对html中的表单项的名称和值进行修改，如果修改会导致验签不通过

@@ -40,8 +40,10 @@ public class AliPayStrategyImpl implements PayStrategy {
         // 付款金额，必填，单位是元
         String totalAmount = changeF2Y(payMentTransacOutDTO.getPayAmount() + "");
         // 订单名称，必填
-        String subject = "每特教育微服务电商项目";
+//          String subject = "每特教育微服务电商项目";
+        String subject ="每特教育微服务电商项目";
         // 商品描述，可空
+//          String body = "每特教育微服务电商项目";
         String body = "每特教育微服务电商项目";
 
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + outTradeNo + "\"," + "\"total_amount\":\"" + totalAmount
