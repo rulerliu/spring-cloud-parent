@@ -13,3 +13,5 @@ https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wx54bd1f8cb7f2b938&gran
 
 4：根据access_token和openid获取用户信息
 https://api.weixin.qq.com/sns/userinfo?access_token=18_7SFnbSKbSEwWqQLi7I4MuuS2PREnyCD4uROuqAoE65PwN3jciktuH7m2CvRnZs6LY3R3dsows1QwYo4LUCefvw&openid=o9DVc1BS5HoY3d5qUbVXO9sDr74A&lang=zh_CN
+
+mvn install:install-file -Dfile="E:\Sdk4J.jar" -DgroupId=com.tengxun -DartifactId=sdk4j  -Dversion=1.0 -Dpackaging=jar
