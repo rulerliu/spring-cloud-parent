@@ -1,8 +1,12 @@
 package com.mayikt.pay.callback;
 
 import com.mayikt.constants.PayConstants;
+import com.mayikt.pay.mapper.PaymentTransactionLogMapper;
+import com.mayikt.pay.mapper.entity.PaymentTransactionLogEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +21,12 @@ import java.util.Map;
  */
 @Slf4j
 public abstract class AbstractPayCallbackTemplate {
+
+    @Autowired
+    private PaymentTransactionLogMapper paymentTransactionLogMapper;
+
+    @Autowired
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     /**
      * 获取所有的请求参数，封装成Map集合，并且验证是否又被篡改
@@ -57,7 +67,10 @@ public abstract class AbstractPayCallbackTemplate {
         }
 
         // 2.将支付参数信息根据支付id插入到数据库中
-        payLog(verifySignature);
+//        payLog(verifySignature);
+        log.info(">>>>>asyncCallBack service 01");
+        threadPoolTaskExecutor.execute(new PayLogThread(verifySignature));
+        log.info(">>>>>asyncCallBack service 04");
 
         if (!verifySignature.get(PayConstants.RESULT_NAME).equals(PayConstants.RESULT_PAYCODE_200)) {
             return failResult();
@@ -75,6 +88,30 @@ public abstract class AbstractPayCallbackTemplate {
     private void payLog(Map<String, String> verifySignature) {
         String paymentId = verifySignature.get("paymentId");
         log.info(">>>>>paymentId:{}, verifySignature:{}", paymentId, verifySignature);
+        PaymentTransactionLogEntity paymentTransactionLog = new PaymentTransactionLogEntity();
+        paymentTransactionLog.setTransactionId(paymentId);
+        paymentTransactionLog.setAsyncLog(verifySignature.toString());
+        paymentTransactionLogMapper.insertTransactionLog(paymentTransactionLog);
+    }
+
+    // A 1423 B 1234
+    /**
+     * 使用多线程写入日志目的：加快响应 提高程序效率 使用线程池维护线程
+     */
+    class PayLogThread implements Runnable {
+        private Map<String, String> verifySignature;
+
+        public PayLogThread( Map<String, String> verifySignature) {
+            this.verifySignature = verifySignature;
+        }
+
+        @Override
+        public void run() {
+            log.info(">>>>>asyncCallBack service 02");
+            payLog(verifySignature);
+            log.info(">>>>>asyncCallBack service 03");
+        }
+
     }
 
 }

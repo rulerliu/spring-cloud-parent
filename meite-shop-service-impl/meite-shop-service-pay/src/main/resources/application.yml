@@ -26,3 +26,13 @@ spring:
     password: 729754701
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.106.190.68:3306/meite_pay?useUnicode=true&characterEncoding=utf-8
+
+
+###多线程配置
+threadPool:
+  ###核心线程数
+  corePoolSize: 10
+  ###最大线程数
+  maxPoolSize: 20
+  ##  队列容量
+  queueCapacity: 16
