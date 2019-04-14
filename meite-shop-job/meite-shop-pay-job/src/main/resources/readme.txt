@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=F:\data\xxl-job-core-2.0.2-SNAPSHOT.jar -DgroupId=com.xuxueli -DartifactId=xxl-job-core -Dversion=2.0.2-SNAPSHOT -Dpackaging=jar

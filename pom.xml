@@ -15,6 +15,7 @@
 		<module>meite-shop-portal</module>
         <module>meite-shop-api-dto</module>
         <module>meite-shop-pay-plugin</module>
+        <module>meite-shop-job</module>
     </modules>
 
 	<parent>
