@@ -4,6 +4,9 @@ import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.JobHandler;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,6 +24,8 @@ public class PayJobHandler extends IJobHandler {
     @Override
     public ReturnT<String> execute(String s) throws Exception {
         log.info(">>>使用任务调度实现自动化对账...");
+        System.out.println(">>>使用任务调度实现自动化对账...");
+        System.out.println(new Date().toLocaleString() + ">>>>" + s);
         return SUCCESS;
     }
 }

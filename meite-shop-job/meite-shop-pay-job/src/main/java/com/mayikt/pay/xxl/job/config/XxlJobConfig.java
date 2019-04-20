@@ -1,12 +1,12 @@
 package com.mayikt.pay.xxl.job.config;
 
-import com.xxl.job.core.executor.XxlJobExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import com.xxl.job.core.executor.XxlJobExecutor;
 
 /**
  * xxl-job config
@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
  * @author xuxueli 2017-04-28
  */
 @Configuration
-@ComponentScan(basePackages = "com.mayikt.pay.xxl.job.jobhandler")
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
