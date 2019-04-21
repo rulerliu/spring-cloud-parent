@@ -136,7 +136,7 @@ public class AliPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
         }
 
         // 2.状态改为已支付
-        paymentTransactionMapper.updatePaymentStatus(PayConstants.PAY_STATUS_SUCCESS.toString(), paymentId);
+        paymentTransactionMapper.updatePaymentStatus(PayConstants.PAY_STATUS_SUCCESS.toString(), paymentId, "ali_pay");
 
         // 3.调用积分服务增加积分(MQ分布式事物)
 

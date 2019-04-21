@@ -9,6 +9,9 @@ package com.mayikt.constants;
  */
 public interface PayConstants {
 
+    String PAYMENT_CHANNEL_YINLIAN_PAY = "yinlian_pay";
+    String PAYMENT_CHANNEL_ALI_PAY = "ali_pay";
+
     String RESULT_NAME = "resultCode";
     String RESULT_PAYCODE_201 = "201";
     String RESULT_PAYCODE_200 = "200";
@@ -42,5 +45,25 @@ public interface PayConstants {
      * 支付宝回调模板benaid
      */
     String ALIPAY_CALLBACK_TEMPLATE = "aliPayCallbackTemplateImpl";
+
+    /**
+     * 添加积分队列名称
+     */
+    String INTEGRAL_DIC_QUEUE = "integral_queue";
+
+    /**
+     * 支付补偿队列名称
+     */
+    String PAY_COMPENSATION_QUEUE = "pay_compensation_queue";
+
+    /**
+     * 积分交换机名称
+     */
+    String INTEGRAL_EXCHANGE_NAME = "integral_exchange";
+
+    /**
+     * 路由键
+     */
+    String INTEGRAL_ROUTINT_KEY = "integralRoutingKey";
 
 }

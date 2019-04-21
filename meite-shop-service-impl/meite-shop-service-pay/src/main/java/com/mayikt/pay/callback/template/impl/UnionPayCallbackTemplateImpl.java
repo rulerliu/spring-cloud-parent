@@ -1,14 +1,17 @@
 package com.mayikt.pay.callback.template.impl;
 
-import com.mayikt.pay.mapper.PaymentTransactionMapper;
-import com.mayikt.pay.mapper.entity.PaymentTransactionEntity;
+import com.alibaba.fastjson.JSONObject;
 import com.mayikt.constants.PayConstants;
 import com.mayikt.pay.callback.template.AbstractPayCallbackTemplate;
+import com.mayikt.pay.mapper.PaymentTransactionMapper;
+import com.mayikt.pay.mapper.entity.PaymentTransactionEntity;
+import com.mayikt.pay.mq.producer.IntegralProducer;
 import com.unionpay.acp.sdk.AcpService;
 import com.unionpay.acp.sdk.LogUtil;
 import com.unionpay.acp.sdk.SDKConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +33,56 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
 
     @Autowired
     private PaymentTransactionMapper paymentTransactionMapper;
+
+    @Autowired
+    private IntegralProducer integralProducer;
+
+    @Override
+    public String asyncService(Map<String, String> verifySignature) {
+        String paymentId = verifySignature.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
+        String respCode = verifySignature.get("respCode");
+        String paymentChannel = verifySignature.get("paymentChannel");
+        //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
+        System.out.println("paymentId:" + paymentId + ",respCode:" + respCode);
+        if (!("00".equals(respCode) || "A6".equals(respCode))) {
+            log.info("订单未支付成功");
+            return failResult();
+        }
+
+        // 防止幂等性
+        PaymentTransactionEntity paymentTransactionEntity = paymentTransactionMapper.selectByPaymentId(paymentId);
+        if (PayConstants.PAY_STATUS_SUCCESS.equals(paymentTransactionEntity.getPaymentStatus())) {
+            log.info("之前已经支付成功过");
+            return successResult();
+        }
+        // 2.状态改为已支付
+        paymentTransactionMapper.updatePaymentStatus(PayConstants.PAY_STATUS_SUCCESS.toString(), paymentId, "yinlian_pay");
+
+        // 3.调用积分服务增加积分(MQ分布式事物)
+        log.info(">>>>基于MQ增加积分 000001");
+        addIntegral(paymentTransactionEntity, paymentChannel);
+        log.info(">>>>基于MQ增加积分 000004");
+
+        // 如果这里报了个错，会去支付回调检查状态，补偿修改订单状态
+        int i = 1 / 0;
+
+        return successResult();
+    }
+
+    /**
+     * 基于MQ增加积分
+     */
+    @Async
+    public void addIntegral(PaymentTransactionEntity paymentTransactionEntity, String paymentChannel) {
+        log.info(">>>>基于MQ增加积分 000002");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("paymentId", paymentTransactionEntity.getPaymentId());
+        jsonObject.put("userId", paymentTransactionEntity.getUserId());
+        jsonObject.put("integral", 100);
+        jsonObject.put("paymentChannel", paymentChannel);
+        integralProducer.send(jsonObject);
+        log.info(">>>>基于MQ增加积分 000003");
+    }
 
     @Override
     public Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) {
@@ -66,30 +119,6 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
     }
 
     @Override
-    public String asyncService(Map<String, String> verifySignature) {
-        String paymentId = verifySignature.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
-        String respCode = verifySignature.get("respCode");
-        //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
-        System.out.println("paymentId:" + paymentId + ",respCode:" + respCode);
-        if (!("00".equals(respCode) || "A6".equals(respCode))) {
-            log.info("订单未支付成功");
-            return failResult();
-        }
-
-        // 防止幂等性
-        PaymentTransactionEntity paymentTransactionEntity = paymentTransactionMapper.selectByPaymentId(paymentId);
-        if (PayConstants.PAY_STATUS_SUCCESS.equals(paymentTransactionEntity.getPaymentStatus())) {
-            log.info("之前已经支付成功过");
-            return successResult();
-        }
-        // 2.状态改为已支付
-        paymentTransactionMapper.updatePaymentStatus(PayConstants.PAY_STATUS_SUCCESS.toString(), paymentId);
-        // 3.调用积分服务增加积分(MQ分布式事物)
-
-        return successResult();
-    }
-
-    @Override
     public String failResult() {
         return PayConstants.YINLIAN_RESULT_FAIL;
     }
@@ -123,4 +152,5 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
         }
         return res;
     }
+
 }

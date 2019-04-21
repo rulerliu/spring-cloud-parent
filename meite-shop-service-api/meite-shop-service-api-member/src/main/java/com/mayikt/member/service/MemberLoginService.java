@@ -1,7 +1,7 @@
 package com.mayikt.member.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.base.BaseResponse;
+import com.mayikt.base.BaseResponse;
 import com.mayikt.member.input.dto.UserLoginInpDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

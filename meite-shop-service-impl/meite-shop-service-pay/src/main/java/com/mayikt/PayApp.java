@@ -30,6 +30,8 @@ public class PayApp {
 	 * http://127.0.0.1:8600/tokenByPayMentTransac?token=
 	 *
 	 * http://127.0.0.1:8600/toPayHtml?channelId=yinlian_pay&payToken=
+	 *
+	 * http://127.0.0.1:8050/pay?payToken=
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(PayApp.class, args);

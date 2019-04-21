@@ -1,12 +1,13 @@
 package com.mayikt.pay.callback.template;
 
+import com.mayikt.constants.PayConstants;
 import com.mayikt.pay.mapper.PaymentTransactionLogMapper;
 import com.mayikt.pay.mapper.entity.PaymentTransactionLogEntity;
-import com.mayikt.constants.PayConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,9 +59,11 @@ public abstract class AbstractPayCallbackTemplate {
      */
     public abstract String successResult();
 
-    public String asyncCallBack(HttpServletRequest req, HttpServletResponse resp) {
+    @Transactional
+    public String asyncCallBack(HttpServletRequest req, HttpServletResponse resp, String paymentChannel) {
         // 1.验证报文参数 相同点 获取所有的请求参数封装成map集合，并且进行参数验签
         Map<String, String> verifySignature = verifySignature(req, resp);
+        verifySignature.put("paymentChannel", paymentChannel);
         String paymentId = verifySignature.get("paymentId");
         if (StringUtils.isBlank(paymentId)) {
             return failResult();

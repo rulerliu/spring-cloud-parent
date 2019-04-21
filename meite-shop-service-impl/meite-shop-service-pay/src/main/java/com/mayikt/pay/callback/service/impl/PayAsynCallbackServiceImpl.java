@@ -28,7 +28,7 @@ public class PayAsynCallbackServiceImpl implements PayAsynCallbackService {
      */
     public String unionPayAsynCallback(HttpServletRequest req, HttpServletResponse resp) {
         AbstractPayCallbackTemplate payCallbackTemplate = PayCallbackFactory.getPayCallbackTemplate(PayConstants.UNIONPAY_CALLBACK_TEMPLATE);
-        return payCallbackTemplate.asyncCallBack(req, resp);
+        return payCallbackTemplate.asyncCallBack(req, resp, PayConstants.PAYMENT_CHANNEL_YINLIAN_PAY);
     }
 
     /**
@@ -41,7 +41,7 @@ public class PayAsynCallbackServiceImpl implements PayAsynCallbackService {
     @Override
     public String aliPayAsynCallback(HttpServletRequest req, HttpServletResponse resp) {
         AbstractPayCallbackTemplate payCallbackTemplate = PayCallbackFactory.getPayCallbackTemplate(PayConstants.ALIPAY_CALLBACK_TEMPLATE);
-        return payCallbackTemplate.asyncCallBack(req, resp);
+        return payCallbackTemplate.asyncCallBack(req, resp, PayConstants.PAYMENT_CHANNEL_ALI_PAY);
     }
 
 }

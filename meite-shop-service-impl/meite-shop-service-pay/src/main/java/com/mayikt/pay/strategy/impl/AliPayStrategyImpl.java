@@ -26,8 +26,12 @@ public class AliPayStrategyImpl implements PayStrategy {
         log.info(">>>>>支付宝参数封装开始<<<<<<<<");
 
         // 获得初始化的AlipayClient(实际应该在数据库中配置)
-        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id,
-                AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key,
+//        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id,
+//                AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key,
+//                AlipayConfig.sign_type);
+
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, paymentChannelEntity.getMerchantId(),
+                paymentChannelEntity.getPrivateKey(), "json", AlipayConfig.charset, paymentChannelEntity.getPublicKey(),
                 AlipayConfig.sign_type);
 
         // 设置请求参数

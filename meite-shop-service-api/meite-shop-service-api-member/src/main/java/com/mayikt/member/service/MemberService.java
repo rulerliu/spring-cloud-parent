@@ -1,16 +1,15 @@
 package com.mayikt.member.service;
 
-import com.mayikt.pay.mayikt.base.BaseResponse;
+import com.mayikt.base.BaseResponse;
 import com.mayikt.member.input.dto.UserLoginInpDTO;
 import com.mayikt.member.output.dto.UserOutDTO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @description:

@@ -10,7 +10,7 @@
 	<artifactId>meite-shop-service-api-weixin</artifactId>
 
 	<dependencies>
-		<!-- 引入weixin entity依赖 -->
+		<!-- 引入weixin dto依赖 -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
 			<artifactId>meite-shop-api-weixin-dto</artifactId>
