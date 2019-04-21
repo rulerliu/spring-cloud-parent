@@ -1,4 +1,4 @@
-package com.mayikt.pay.mayikt.weixin.feign;
+package com.mayikt.weixin.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 

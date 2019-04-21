@@ -10,7 +10,7 @@
 	<artifactId>meite-shop-service-pay</artifactId>
 
 	<dependencies>
-		<!-- 引入weixin api -->
+		<!-- 引入pay api -->
 		<dependency>
 			<groupId>com.mayikt</groupId>
 			<artifactId>meite-shop-service-api-pay</artifactId>
