@@ -1,32 +1,40 @@
-#logging:
-#  level:
-#    org.springframework.web: INFO
-#    com.github.binarywang.demo.wx.mp: DEBUG
-#    me.chanjar.weixin: DEBUG
-#wx:
-#  mp:
-#    configs:
-#      - appId: wx54bd1f8cb7f2b938 #（一个公众号的appid）
-#        secret: c8fcb85975e785494e3ef2cc5556d546 #（公众号的appsecret）
-#        token: liuwq #（接口配置里的Token值）
-#server:
-#  port: 8200
-#  
-#mayikt: 
-#  weixin: 
-#    registration:
-#      code: 
-#        ###微信注册码消息
-#        message:  您的注册码为:%s，请关注<a href="https://ke.qq.com/course/273548">腾讯课堂免费公开课</a>，欢迎观看97后架构师余老师的精品课程讲解。官方QQ群：<a href='https://jq.qq.com/?_wv=1027&k=5TVfAMF'>193086273</a>，期待你的加入，感谢！
-#    ###默认提示消息
-#    default: 
-#      registration:
-#        code: 
-#          message: 您的消息，我们已经收到,会及时回复给您的!
-          
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+wx:
+  mp:
+    configs:
+      - appId: wx54bd1f8cb7f2b938 #（一个公众号的appid）
+        secret: c8fcb85975e785494e3ef2cc5556d546 #（公众号的appsecret）
+        token: liuwq #（接口配置里的Token值）
+server:
+  port: 8200
+
+###服务名称(服务注册到eureka名称)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.106.190.68:8100/eureka
+
+mayikt:
+  weixin:
+    app:
+      name: liuwq
+    registration:
+      code:
+        ###微信注册码消息
+        message:  您的注册码为:%s，请关注<a href="https://ke.qq.com/course/273548">腾讯课堂免费公开课</a>，欢迎观看97后架构师余老师的精品课程讲解。官方QQ群：<a href='https://jq.qq.com/?_wv=1027&k=5TVfAMF'>193086273</a>，期待你的加入，感谢！
+    ###默认提示消息
+    default:
+      registration:
+        code:
+          message: 您的消息，我们已经收到,会及时回复给您的!
+
 spring:
-#  application:
-#    name: app-mayikt-weixin
+  application:
+    name: app-mayikt-weixin
   redis:
     host: 47.106.190.68
     password: 729754701
@@ -37,8 +45,8 @@ spring:
         min-idle: 1
         max-active: 1000
         max-wait: -1
-        
-  ###数据库相关连接      
+
+  ###数据库相关连接
   datasource:
     username: root
     password: 729754701

@@ -1,12 +1,12 @@
 package com.mayikt.pay.mayikt.weixin.service.impl;
 
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.weixin.output.dto.AppOutDTO;
+
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.weixin.output.dto.AppOutDTO;
+import com.mayikt.weixin.service.WeiXinAppService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mayikt.pay.mayikt.weixin.service.WeiXinAppService;
 
 /**
  * @description:

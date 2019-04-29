@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.spring4all.swagger.EnableSwagger2Doc;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -30,7 +30,8 @@ import java.util.List;
 @EnableEurekaClient
 @EnableZuulProxy
 @EnableSwagger2Doc
-@EnableApolloConfig
+//@EnableApolloConfig
+@MapperScan(basePackages = "com.mayikt.zuul.mapper")
 public class AppZuul {
 
 //	@Value("${mayikt.zuul.swagge.document}")
@@ -42,6 +43,8 @@ public class AppZuul {
 	/**
 	 * http://localhost/api-weixin/getApp
 	 * http://localhost/api-member/memberInvokeWeixin
+	 *
+	 * http://127.0.0.1/api-pay/cratePayToken?payAmount=20000&orderId=1234567890&userId=1234
 	 * @param args
 	 */
 	public static void main(String[] args) {

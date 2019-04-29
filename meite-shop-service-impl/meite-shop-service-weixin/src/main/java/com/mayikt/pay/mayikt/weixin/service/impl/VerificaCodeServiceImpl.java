@@ -1,15 +1,14 @@
 package com.mayikt.pay.mayikt.weixin.service.impl;
 
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.Constants;
-import com.mayikt.pay.mayikt.core.utils.RedisUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.Constants;
+import com.mayikt.core.utils.RedisUtil;
+import com.mayikt.weixin.service.VerificaCodeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.weixin.service.VerificaCodeService;
 
 @RestController
 public class VerificaCodeServiceImpl extends BaseApiService<JSONObject> implements VerificaCodeService {

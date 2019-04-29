@@ -1,9 +1,9 @@
 package com.mayikt.pay.mayikt.weixin.mp.handler;
 
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.Constants;
-import com.mayikt.pay.mayikt.core.utils.RedisUtil;
-import com.mayikt.pay.mayikt.core.utils.RegexUtils;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.Constants;
+import com.mayikt.core.utils.RedisUtil;
+import com.mayikt.core.utils.RegexUtils;
 import com.mayikt.member.output.dto.UserOutDTO;
 import com.mayikt.pay.mayikt.weixin.feign.MemberServiceFeign;
 import com.mayikt.pay.mayikt.weixin.mp.builder.TextBuilder;

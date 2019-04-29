@@ -1,9 +1,9 @@
-package com.mayikt.core.type;
+package com.mayikt.core.utils;
 
 /**
  * 强转工具类
  */
-public class TypeCastHelper {
+public class TypeCastUtils {
 	private static final String DEFAULT_STRING = "";
 	private static final int DEFAULT_INT = 0;
 	private static final long DEFAULT_LONG = 0L;
