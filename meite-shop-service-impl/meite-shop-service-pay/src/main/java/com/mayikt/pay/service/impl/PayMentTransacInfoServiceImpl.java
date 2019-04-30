@@ -4,7 +4,7 @@ import com.mayikt.base.BaseApiService;
 import com.mayikt.base.BaseResponse;
 import com.mayikt.core.bean.utils.MeiteBeanUtils;
 import com.mayikt.core.token.GenerateToken;
-import com.mayikt.core.utils.TypeCastUtils;
+import com.mayikt.core.utils.NumberCastUtils;
 import com.mayikt.pay.mapper.PaymentTransactionMapper;
 import com.mayikt.pay.mapper.entity.PaymentTransactionEntity;
 import com.mayikt.pay.output.dto.PayMentTransacOutDTO;
@@ -36,7 +36,7 @@ public class PayMentTransacInfoServiceImpl extends BaseApiService<PayMentTransac
 		}
 		
 		// 3.转换为整数类型
-		Long transactionId = TypeCastUtils.toLong(value);
+		Long transactionId = NumberCastUtils.toLong(value);
 		// 4.使用transactionId查询支付信息
 		PaymentTransactionEntity paymentTransaction = paymentTransactionMapper.selectById(transactionId);
 		if (paymentTransaction == null) {
