@@ -1,6 +1,9 @@
 package com.mayikt.test;
 
-import java.text.SimpleDateFormat;
+import com.mayikt.core.utils.DateUtils;
+
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,41 +18,57 @@ import java.util.concurrent.Executors;
 public class ThreadPoolTest {
 
     public static void main(String[] args) {
-//        test1();
-        findCityByName1();
+        test1();
+//        findCityByName1();
 //        System.out.println(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 //        System.out.println(new SimpleDateFormat("yyyyMMddHHmmssSSSS").format(new Date()));
     }
 
     public static void findCityByName1() {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
-        for (int i = 0; i < 500; i++) {
-            executorService.execute(new Runnable() {
+        Long start = System.currentTimeMillis();
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 1000; i++) {
+            threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println(">>>" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date()));
+                    Long start = System.currentTimeMillis();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Long end = System.currentTimeMillis();
+                    System.out.println(">>>" + (end - start));
                 }
             });
         }
-        executorService.shutdown();
+
+        threadPool.shutdown();
+        while (true) {
+            if (threadPool.isTerminated()) {
+                Long end = System.currentTimeMillis();
+                System.out.println(end - start);
+                break;
+            }
+        }
     }
 
     public static void test1() {
-        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             final int index = i;
             fixedThreadPool.execute(new Runnable() {
 
                 @Override
                 public void run() {
-//                    try {
-                        System.out.println(new Date().toLocaleString() + ">>>" + index);
-//                        Thread.sleep(2000);
-//                    } catch (InterruptedException e) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        DateFormat dateFormat = DateUtils.getDateFormat();
+                        Date parse = dateFormat.parse("2019-01-01 12:12:12");
+                        System.out.println(parse.toLocaleString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
