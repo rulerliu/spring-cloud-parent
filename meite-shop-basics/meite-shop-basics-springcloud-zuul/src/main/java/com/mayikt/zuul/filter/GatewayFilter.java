@@ -1,6 +1,8 @@
 package com.mayikt.zuul.filter;
 
 import com.mayikt.zuul.build.GatewayBuilderDirector;
+import com.mayikt.zuul.chain.handler.client.ChainClient;
+import com.mayikt.zuul.chain.handler.client.ChainClient2;
 import com.mayikt.zuul.mapper.BlacklistMapper;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -29,6 +31,12 @@ public class GatewayFilter extends ZuulFilter {
 
     @Autowired
     private GatewayBuilderDirector gatewayBuilderDirector;
+
+    @Autowired
+    private ChainClient chainClient;
+
+    @Autowired
+    private ChainClient2 chainClient2;
 
     /**
      * 请求之前拦截处理业务逻辑
@@ -60,7 +68,13 @@ public class GatewayFilter extends ZuulFilter {
             resultError(context, "ip:" + ipAddres + ",sign failed");
         }*/
 
-        gatewayBuilderDirector.direcot(context, ipAddres , response, request);
+        // 基于建造者模式重构代码
+//        gatewayBuilderDirector.direcot(context, ipAddres , response, request);
+
+        // 基于责任链模式重构代码
+//        chainClient.run(context, ipAddres, request, response);
+
+        chainClient2.run(context, ipAddres, request, response);
 
         return null;
     }

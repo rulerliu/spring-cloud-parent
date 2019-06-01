@@ -28,7 +28,16 @@
 			<artifactId>meite-shop-common-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.mayikt</groupId>
+			<artifactId>meite-shop-service-api-authorization</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- springcloud feign组件 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 	</dependencies>
 
 

@@ -37,8 +37,8 @@ public class GenerateToken {
 		if (StringUtils.isEmpty(redisValue)) {
 			new Exception("redisValue Not nul");
 		}
-		String token = keyPrefix + UUID.randomUUID().toString().replace("-", "");
-		redisUtil.setString(token, redisValue, time);
+		String token = UUID.randomUUID().toString().replace("-", "");
+		redisUtil.setString(keyPrefix + token, redisValue, time);
 		return token;
 	}
 

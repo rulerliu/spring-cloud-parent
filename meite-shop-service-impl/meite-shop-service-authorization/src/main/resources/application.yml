@@ -1,0 +1,47 @@
+
+###服务启动端口号
+server:
+  port: 9500
+###服务名称(服务注册到eureka名称)  
+#spring:
+#    application:
+#        name: app-mayikt-member
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://47.106.190.68:8100/eureka
+
+
+  
+spring:
+  application:
+    name:  app-mayikt-authorization
+  zipkin: 
+      base-url: http://127.0.0.1:9411/
+      ###全部采集  
+  sleuth:
+     sampler:
+      probability: 1.0
+  redis:
+    host: 47.106.190.68
+    port: 6379
+    password: 729754701
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+
+###数据库相关连接      
+  datasource:
+    username: root
+    password: 729754701
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.106.190.68:3306/meite_gateway?useUnicode=true&characterEncoding=UTF-8
+
+####打印MyBatias日志    
+logging:
+  level:
+  ### 开发环境使用DEBUG 生产环境info或者error
+   com.mayikt.authorization.mapper: DEBUG
