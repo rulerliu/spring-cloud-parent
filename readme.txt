@@ -1,5 +1,5 @@
 hello world!!!!!!
 
-你好师姐!!!test
+你好师姐!!
 
 mvn install:install-file -Dfile="E:\Sdk4J.jar" -DgroupId=com.tengxun -DartifactId=sdk4j  -Dversion=1.0 -Dpackaging=jar
