@@ -56,7 +56,7 @@ public class SpikeCommodityServiceImpl extends BaseApiService<JSONObject> implem
         }
 
         /*
-        // 2.用户频率验证 限流
+        // 2.用户频率验证 限流(应该在网关中实现)
         Boolean reusltNx = redisUtil.setNx("seckill_" + phone, seckillId + "", 10L);
         if (!reusltNx) {
             log.error(">>>访问次数过快，请10秒后在重试!");
