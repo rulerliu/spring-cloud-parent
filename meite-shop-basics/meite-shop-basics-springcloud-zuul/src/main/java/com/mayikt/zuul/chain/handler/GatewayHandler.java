@@ -20,7 +20,7 @@ public abstract class GatewayHandler {
      * handler处理器
      * @return
      */
-    public abstract void service(RequestContext ctx, String ipAddres, HttpServletRequest request, HttpServletResponse response);
+    public abstract void service(RequestContext ctx, HttpServletRequest request, HttpServletResponse response);
 
     /**
      * 指向下一个handler
@@ -29,6 +29,14 @@ public abstract class GatewayHandler {
         if (nextGatewayHandler != null) {
             this.nextGatewayHandler = nextGatewayHandler;
         }
+    }
+
+    public void resultError(Integer code, RequestContext ctx, String errorMsg) {
+        ctx.setResponseStatusCode(code);
+        // 网关响应为false 不会转发服务
+        ctx.setSendZuulResponse(false);
+        ctx.setResponseBody(errorMsg);
+        ctx.getResponse().setContentType("text/html;charset=UTF-8");
     }
 
     protected void resultError(RequestContext ctx, String errorMsg) {

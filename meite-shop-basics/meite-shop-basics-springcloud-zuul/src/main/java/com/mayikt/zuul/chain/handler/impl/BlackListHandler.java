@@ -26,15 +26,16 @@ public class BlackListHandler extends GatewayHandler {
     private BlacklistMapper blacklistMapper;
 
     @Override
-    public void service(RequestContext ctx, String ipAddres, HttpServletRequest request, HttpServletResponse response) {
-        log.info(">>>流程1：黑名单拦截");
+    public void service(RequestContext ctx, HttpServletRequest request, HttpServletResponse response) {
+        log.info(">>>流程2：黑名单拦截");
         // 2.查询数据库黑名单
+        String ipAddres = request.getParameter("ipAddres");
         MeiteBlacklist meiteBlacklist = blacklistMapper.findBlacklist(ipAddres);
         if (meiteBlacklist != null) {
             super.resultError(ctx, "ip:" + ipAddres + ",Insufficient access rights");
             return;
         }
-        nextGatewayHandler.service(ctx, ipAddres, request, response);
+        nextGatewayHandler.service(ctx, request, response);
     }
 
 }

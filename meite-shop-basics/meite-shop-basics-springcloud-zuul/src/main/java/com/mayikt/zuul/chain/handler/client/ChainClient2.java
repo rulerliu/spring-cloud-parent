@@ -3,6 +3,7 @@ package com.mayikt.zuul.chain.handler.client;
 import com.mayikt.zuul.chain.handler.GatewayHandler;
 import com.mayikt.zuul.chain.handler.factory.FactoryHandler2;
 import com.netflix.zuul.context.RequestContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class ChainClient2 {
 
-    public void run(RequestContext ctx, String ipAddres, HttpServletRequest request, HttpServletResponse response) {
-        GatewayHandler firstGatewayHander = FactoryHandler2.getFirstGatewayHander();
-        firstGatewayHander.service(ctx, ipAddres, request, response);
+    @Autowired
+    private FactoryHandler2 factoryHandler2;
+
+    public void run(RequestContext ctx, HttpServletRequest request, HttpServletResponse response) {
+        GatewayHandler firstGatewayHander = factoryHandler2.getFirstGatewayHander();
+        firstGatewayHander.service(ctx, request, response);
     }
 
 }

@@ -45,6 +45,10 @@ zuul:
       path: /api-pay/**
       serviceId: app-mayikt-pay
     public-api-pay:
-      ### 以 /api-pay/访问转发到支付服务
+      ### 以 /public/api-pay/访问转发到支付服务
       path: /public/api-pay/**
       serviceId: app-mayikt-pay
+    api-spike:
+      ### 以 /api-spike/访问转发到订单服务
+      path: /api-spike/**
+      serviceId: app-mayikt-spike

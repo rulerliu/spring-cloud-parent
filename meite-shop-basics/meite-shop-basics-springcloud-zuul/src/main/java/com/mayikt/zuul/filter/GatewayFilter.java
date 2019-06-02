@@ -1,5 +1,6 @@
 package com.mayikt.zuul.filter;
 
+import com.mayikt.core.utils.IpUtils;
 import com.mayikt.zuul.build.GatewayBuilderDirector;
 import com.mayikt.zuul.chain.handler.client.ChainClient;
 import com.mayikt.zuul.chain.handler.client.ChainClient2;
@@ -53,7 +54,7 @@ public class GatewayFilter extends ZuulFilter {
         response.setContentType("UTF-8");
 
         // 获取客户端真实ip地址
-        String ipAddres = getIpAddr(request);
+        String ipAddres = IpUtils.getIpAddr(request);
         if (StringUtils.isEmpty(ipAddres)) {
             resultError(context, "未能够获取到ip地址");
         }
@@ -72,9 +73,9 @@ public class GatewayFilter extends ZuulFilter {
 //        gatewayBuilderDirector.direcot(context, ipAddres , response, request);
 
         // 基于责任链模式重构代码
-//        chainClient.run(context, ipAddres, request, response);
+//        chainClient.run(context, request, response);
 
-        chainClient2.run(context, ipAddres, request, response);
+        chainClient2.run(context, request, response);
 
         return null;
     }
@@ -96,32 +97,6 @@ public class GatewayFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         return true;
-    }
-
-    /**
-     * 获取Ip地址
-     *
-     * @param request
-     * @return
-     */
-    public String getIpAddr(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_CLIENT_IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        return ip;
     }
 
     private void resultError(RequestContext context, String errorMsg) {

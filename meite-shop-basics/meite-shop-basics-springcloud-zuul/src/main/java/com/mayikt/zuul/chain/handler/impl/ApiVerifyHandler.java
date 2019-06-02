@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 public class ApiVerifyHandler extends GatewayHandler {
 
     @Override
-    public void service(RequestContext ctx, String ipAddres, HttpServletRequest request, HttpServletResponse response) {
-        log.info(">>>流程2：接口验签拦截");
+    public void service(RequestContext ctx, HttpServletRequest request, HttpServletResponse response) {
+        log.info(">>>流程3：接口验签拦截");
 
-        nextGatewayHandler.service(ctx, ipAddres, request, response);
+        nextGatewayHandler.service(ctx, request, response);
     }
 
 }

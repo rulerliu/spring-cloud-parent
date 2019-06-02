@@ -50,6 +50,8 @@ public class AppZuul {
 	 *
 	 * http://127.0.0.1/public/api-pay/cratePayToken?payAmount=20000&orderId=1234567890&userId=1234
 	 *
+	 * http://127.0.0.1/api-spike/spike?phone=18529103439&seckillId=1
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
