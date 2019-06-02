@@ -17,7 +17,8 @@
 		<module>meite-shop-service-api-pay</module>
         <module>meite-shop-service-api-integral</module>
 		<module>meite-shop-service-api-authorization</module>
-	</modules>
+        <module>meite-shop-service-api-spike</module>
+    </modules>
 
 	<dependencies>
 		<!-- common-core -->

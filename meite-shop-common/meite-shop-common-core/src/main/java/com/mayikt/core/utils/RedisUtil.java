@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -51,6 +52,29 @@ public class RedisUtil {
 		if (timeout != null) {
 			stringRedisTemplate.expire(key, timeout, TimeUnit.SECONDS);
 		}
+	}
+
+	public StringRedisTemplate getStringRedisTemplate() {
+		return stringRedisTemplate;
+	}
+
+	/**
+	 * 如果key不存在的话返回true，存在的话返回fasle
+	 * @param key
+	 * @param value
+	 * @param timeout 单位：秒
+	 * @return
+	 */
+	public Boolean setNx(String key, String value, Long timeout) {
+		Boolean setIfAbsent = stringRedisTemplate.opsForValue().setIfAbsent(key, value);
+		if (timeout != null) {
+			stringRedisTemplate.expire(key, timeout, TimeUnit.SECONDS);
+		}
+		return setIfAbsent;
+	}
+
+	public void setList(String key, List<String> listToken) {
+		stringRedisTemplate.opsForList().leftPushAll(key, listToken);
 	}
 
 	/**

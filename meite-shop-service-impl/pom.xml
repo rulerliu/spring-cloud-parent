@@ -16,7 +16,8 @@
 		<module>meite-shop-service-pay</module>
         <module>meite-shop-service-integral</module>
 		<module>meite-shop-service-authorization</module>
-	</modules>
+        <module>meite-shop-service-spike</module>
+    </modules>
 
 	<dependencies>
 		<!-- springcloud feign组件 -->
