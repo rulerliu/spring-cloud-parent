@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -67,7 +69,26 @@ public class GenerateToken {
 			return null;
 		}
 		return redisUtil.delKey(token);
+	}
 
+
+	public void createListToken(String keyPrefix, String redisKey, Long tokenQuantity) {
+		List<String> listToken = getListToken(tokenQuantity);
+		redisUtil.setList(keyPrefix + redisKey, listToken);
+	}
+
+	public String getListKeyToken(String key) {
+		String value = redisUtil.getStringRedisTemplate().opsForList().leftPop(key);
+		return value;
+	}
+
+	private List<String> getListToken(Long tokenQuantity) {
+		List<String> listToken = new ArrayList<>();
+		for (int i = 0; i < tokenQuantity; i++) {
+			String token = UUID.randomUUID().toString().replace("-", "");
+			listToken.add(token);
+		}
+		return listToken;
 	}
 
 }
