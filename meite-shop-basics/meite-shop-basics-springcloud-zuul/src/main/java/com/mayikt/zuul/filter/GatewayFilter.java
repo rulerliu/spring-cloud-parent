@@ -1,7 +1,7 @@
 package com.mayikt.zuul.filter;
 
 import com.mayikt.core.utils.IpUtils;
-import com.mayikt.zuul.build.GatewayBuilderDirector;
+import com.mayikt.zuul.builder.GatewayBuilderDirector;
 import com.mayikt.zuul.chain.handler.client.ChainClient;
 import com.mayikt.zuul.chain.handler.client.ChainClient2;
 import com.mayikt.zuul.mapper.BlacklistMapper;
