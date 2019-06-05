@@ -1,8 +1,7 @@
 package com.mayikt.member.feign;
 
+import com.mayikt.weixin.service.VerificaCodeService;
 import org.springframework.cloud.openfeign.FeignClient;
-
-import com.mayikt.pay.mayikt.weixin.service.VerificaCodeService;
 
 /**
  * @description:

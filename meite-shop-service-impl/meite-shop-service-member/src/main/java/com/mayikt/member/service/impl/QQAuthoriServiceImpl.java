@@ -1,18 +1,17 @@
 package com.mayikt.member.service.impl;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.Constants;
-import com.mayikt.pay.mayikt.constants.MemberLoginConstants;
-import com.mayikt.pay.mayikt.core.token.GenerateToken;
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.Constants;
+import com.mayikt.constants.MemberLoginConstants;
+import com.mayikt.core.token.GenerateToken;
 import com.mayikt.member.mapper.UserMapper;
 import com.mayikt.member.mapper.entity.UserDO;
 import com.mayikt.member.service.QQAuthoriService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @description:

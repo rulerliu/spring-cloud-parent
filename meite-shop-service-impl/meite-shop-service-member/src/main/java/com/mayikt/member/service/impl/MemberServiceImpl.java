@@ -1,24 +1,23 @@
 package com.mayikt.member.service.impl;
 
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.Constants;
-import com.mayikt.pay.mayikt.constants.MemberLoginConstants;
-import com.mayikt.pay.mayikt.core.bean.utils.MeiteBeanUtils;
-import com.mayikt.pay.mayikt.core.token.GenerateToken;
-import com.mayikt.pay.mayikt.core.type.TypeCastHelper;
-import com.mayikt.pay.mayikt.core.utils.MD5Util;
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.Constants;
+import com.mayikt.constants.MemberLoginConstants;
+import com.mayikt.core.bean.utils.MeiteBeanUtils;
+import com.mayikt.core.token.GenerateToken;
+import com.mayikt.core.utils.MD5Util;
+import com.mayikt.core.utils.NumberCastUtils;
+import com.mayikt.member.feign.WeiXinAppServiceFeign;
 import com.mayikt.member.input.dto.UserLoginInpDTO;
+import com.mayikt.member.mapper.UserMapper;
+import com.mayikt.member.mapper.entity.UserDO;
 import com.mayikt.member.output.dto.UserOutDTO;
+import com.mayikt.member.service.MemberService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mayikt.member.feign.WeiXinAppServiceFeign;
-import com.mayikt.member.mapper.UserMapper;
-import com.mayikt.member.mapper.entity.UserDO;
-import com.mayikt.member.service.MemberService;
 
 /**
  * @description:
@@ -65,7 +64,7 @@ public class MemberServiceImpl extends BaseApiService<UserOutDTO> implements Mem
 			return setResultError("token无效或者已过期");
 		}
 
-		long userId = TypeCastHelper.toLong(redisUserId);
+		long userId = NumberCastUtils.toLong(redisUserId);
 		UserDO userDO = userMapper.findByUserId(userId);
 		if (userDO == null) {
 			return setResultError("用户id:" + userId + "不存在");

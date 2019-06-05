@@ -1,6 +1,6 @@
 package com.mayikt.member.mapper.entity;
 
-import com.mayikt.pay.mayikt.base.BaseDO;
+import com.mayikt.base.BaseDO;
 import lombok.Data;
 
 @Data

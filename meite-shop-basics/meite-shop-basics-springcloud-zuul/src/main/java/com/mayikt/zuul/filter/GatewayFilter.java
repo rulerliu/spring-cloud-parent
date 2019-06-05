@@ -69,7 +69,7 @@ public class GatewayFilter extends ZuulFilter {
             resultError(context, "ip:" + ipAddres + ",sign failed");
         }*/
 
-        // 基于建造者模式重构代码
+        // 基于建造者模式重构代码R
 //        gatewayBuilderDirector.direcot(context, ipAddres , response, request);
 
         // 基于责任链模式重构代码

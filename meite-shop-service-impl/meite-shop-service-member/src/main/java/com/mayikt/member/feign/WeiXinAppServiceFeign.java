@@ -1,8 +1,7 @@
 package com.mayikt.member.feign;
 
+import com.mayikt.weixin.service.WeiXinAppService;
 import org.springframework.cloud.openfeign.FeignClient;
-
-import com.mayikt.pay.mayikt.weixin.service.WeiXinAppService;
 
 /**
  * @description: 会员调用微信服务feign

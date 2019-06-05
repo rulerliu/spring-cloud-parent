@@ -1,12 +1,12 @@
 package com.mayikt.member.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.MemberLoginConstants;
-import com.mayikt.pay.mayikt.core.token.GenerateToken;
-import com.mayikt.pay.mayikt.core.transactional.RedisDataSoureceTransaction;
-import com.mayikt.pay.mayikt.core.utils.MD5Util;
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.MemberLoginConstants;
+import com.mayikt.core.token.GenerateToken;
+import com.mayikt.core.transactional.RedisDataSoureceTransaction;
+import com.mayikt.core.utils.MD5Util;
 import com.mayikt.member.input.dto.UserLoginInpDTO;
 import com.mayikt.member.mapper.UserMapper;
 import com.mayikt.member.mapper.UserTokenMapper;

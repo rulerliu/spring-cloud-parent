@@ -1,11 +1,11 @@
 package com.mayikt.member.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.base.BaseApiService;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.core.utils.MD5Util;
-import com.mayikt.member.input.dto.UserInpDTO;
+import com.mayikt.base.BaseApiService;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.core.utils.MD5Util;
 import com.mayikt.member.feign.VerificaCodeServiceFeign;
+import com.mayikt.member.input.dto.UserInpDTO;
 import com.mayikt.member.mapper.UserMapper;
 import com.mayikt.member.mapper.entity.UserDO;
 import com.mayikt.member.service.MemberRegisterService;

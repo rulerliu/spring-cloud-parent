@@ -1,17 +1,17 @@
 package com.mayikt.member.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mayikt.pay.mayikt.base.BaseResponse;
-import com.mayikt.pay.mayikt.constants.MemberLoginConstants;
-import com.mayikt.pay.mayikt.constants.PageConstants;
+import com.mayikt.base.BaseResponse;
+import com.mayikt.constants.MemberLoginConstants;
+import com.mayikt.constants.PageConstants;
 import com.mayikt.member.controller.req.vo.LoginVO;
-import com.mayikt.member.input.dto.UserLoginInpDTO;
-import com.mayikt.pay.mayikt.web.base.BaseWebController;
-import com.mayikt.pay.mayikt.web.bean.MeiteBeanUtils;
-import com.mayikt.pay.mayikt.web.constants.WebConstants;
-import com.mayikt.pay.mayikt.web.utils.CookieUtils;
-import com.mayikt.pay.mayikt.web.utils.RandomValidateCodeUtil;
 import com.mayikt.member.feign.MemberLoginServiceFeign;
+import com.mayikt.member.input.dto.UserLoginInpDTO;
+import com.mayikt.web.base.BaseWebController;
+import com.mayikt.web.bean.MeiteBeanUtils;
+import com.mayikt.web.constants.WebConstants;
+import com.mayikt.web.utils.CookieUtils;
+import com.mayikt.web.utils.RandomValidateCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
