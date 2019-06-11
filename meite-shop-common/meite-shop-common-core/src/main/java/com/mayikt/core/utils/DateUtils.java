@@ -6,9 +6,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.text.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * @description:
@@ -121,6 +119,16 @@ public class DateUtils {
         return dataStr;
     }
 
+    public static Date strToDate(String strDate, String pattern) {
+        if (StringUtils.isBlank(strDate)) {
+            return null;
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        ParsePosition pos = new ParsePosition(0);
+        Date date = formatter.parse(strDate, pos);
+        return date;
+    }
+
     /** <br>
      * 方法名称: 将datetime字符串转为Date类型<br>
      * 适用场景: <br>
@@ -211,7 +219,7 @@ public class DateUtils {
      *
      * @autho daiyuanyuan
      * @time 2018年4月4日 下午6:04:25 */
-    public static Date StrToDate(String strDate) {
+    public static Date strToDate(String strDate) {
         if (StringUtils.isBlank(strDate)) {
             return null;
         }
@@ -258,21 +266,14 @@ public class DateUtils {
         Date resultDate = dateStrToDate(dataStr);
         return resultDate;
     }
-    public static Date getFirstDayOfMonth(Date date){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.DAY_OF_MONTH,1);
-        calendar.set(Calendar.HOUR_OF_DAY,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        return calendar.getTime();
-    }
+
     public static Date getYestoday(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_MONTH,-1);
         return calendar.getTime();
     }
+
     public static String getNextDay(String currDateStr){
         SimpleDateFormat sdf=new SimpleDateFormat(yyyyMMdd);
         ParsePosition pos = new ParsePosition(0);
@@ -283,6 +284,17 @@ public class DateUtils {
         Date nextDate=calendar.getTime();
         return sdf.format(nextDate);
     }
+
+    public static Date getFirstDayOfMonth(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH,1);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        return calendar.getTime();
+    }
+
     public static Date getLastDayOfMonth(Date date){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -293,11 +305,6 @@ public class DateUtils {
         calendar.set(Calendar.SECOND,0);
         calendar.add(Calendar.SECOND,-1);
         return calendar.getTime();
-    }
-
-    public static void main(String[] args) {
-        int daysOfStartDateFromNowDate = getDaysOfStartDateFromNowDate(DateUtils.yyyyMMddHHmmss, "20181122154306");
-        System.out.println("相差天数:" + daysOfStartDateFromNowDate);
     }
 
     /**
@@ -334,6 +341,42 @@ public class DateUtils {
         calendar.add(Calendar.DAY_OF_MONTH, 30); // 设置为30天后
         Date after30days = calendar.getTime(); // 得到30天后的时间
         return after30days.getTime() >= time.getTime();
+    }
+
+    /**
+     * 获取某月的第一天和最后一天
+     *
+     * @param time
+     * @return
+     */
+    public static Map<String, Date> getFirstdayLastdayMonth(String time, String pattern) {
+        Date firstDate = strToDate(time, pattern);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(firstDate);
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DATE, 1);
+        calendar.add(Calendar.DATE, -1);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date lastDate = calendar.getTime();
+
+        Map<String, Date> map = new HashMap<>();
+        map.put("first", firstDate);
+        map.put("last", lastDate);
+        return map;
+    }
+
+    public static void main(String[] args) {
+        int daysOfStartDateFromNowDate = getDaysOfStartDateFromNowDate(DateUtils.yyyyMMddHHmmss, "20181122154306");
+        System.out.println("相差天数:" + daysOfStartDateFromNowDate);
+
+        Map<String, Date> map = getFirstdayLastdayMonth("2019-02", "yyyy-MM");
+        System.out.println(map);
+
+        System.out.println(getFirstDayOfMonth(new Date()));
+        System.out.println(getLastDayOfMonth(new Date()));
     }
 
 }

@@ -1,5 +1,7 @@
 package com.mayikt.core.utils;
 
+import org.springframework.util.Assert;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -55,6 +57,7 @@ class User {
 public class Test {
 
 	public static void main(String[] args) {
+		Assert.notNull("aa", "aa");
 		List<User> list = new ArrayList<User>(2); 
 		list.add(new User("robbie")); 
 		list.add(new User("nick")); 
