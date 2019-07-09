@@ -80,6 +80,3 @@ public class ReflectinoTest {
     }
 
 }
-
-class User {
-}
