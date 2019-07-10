@@ -38,6 +38,40 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
     private IntegralProducer integralProducer;
 
     @Override
+    public Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) {
+        LogUtil.writeLog("BackRcvResponse接收后台通知开始");
+
+        String encoding = req.getParameter(SDKConstants.param_encoding);
+        // 获取银联通知服务器发送的后台通知参数
+        Map<String, String> reqParam = getAllRequestParam(req);
+        LogUtil.printRequestLog(reqParam);
+
+        //重要！验证签名前不要修改reqParam中的键值对的内容，否则会验签不过
+        if (!AcpService.validate(reqParam, encoding)) {
+            LogUtil.writeLog("验证签名结果[失败].");
+            //验签失败，需解决验签问题
+            reqParam.put(PayConstants.RESULT_NAME, PayConstants.RESULT_PAYCODE_201);
+
+        } else {
+            LogUtil.writeLog("验证签名结果[成功].");
+            //【注：为了安全验签成功才应该写商户的成功处理逻辑】交易成功，更新商户订单状态
+
+            String paymentId = reqParam.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
+            String respCode = reqParam.get("respCode");
+            //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
+            reqParam.put("paymentId", paymentId);
+            reqParam.put(PayConstants.RESULT_NAME, PayConstants.RESULT_PAYCODE_200);
+            System.out.println("paymentId:" + paymentId + ",respCode:" + respCode);
+
+        }
+
+        LogUtil.writeLog("BackRcvResponse接收后台通知结束");
+        //返回给银联服务器http 200  状态码
+//        resp.getWriter().print("ok");
+        return reqParam;
+    }
+
+    @Override
     public String asyncService(Map<String, String> verifySignature) {
         String paymentId = verifySignature.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
         String respCode = verifySignature.get("respCode");
@@ -82,40 +116,6 @@ public class UnionPayCallbackTemplateImpl extends AbstractPayCallbackTemplate {
         jsonObject.put("paymentChannel", paymentChannel);
         integralProducer.send(jsonObject);
         log.info(">>>>基于MQ增加积分 000003");
-    }
-
-    @Override
-    public Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) {
-        LogUtil.writeLog("BackRcvResponse接收后台通知开始");
-
-        String encoding = req.getParameter(SDKConstants.param_encoding);
-        // 获取银联通知服务器发送的后台通知参数
-        Map<String, String> reqParam = getAllRequestParam(req);
-        LogUtil.printRequestLog(reqParam);
-
-        //重要！验证签名前不要修改reqParam中的键值对的内容，否则会验签不过
-        if (!AcpService.validate(reqParam, encoding)) {
-            LogUtil.writeLog("验证签名结果[失败].");
-            //验签失败，需解决验签问题
-            reqParam.put(PayConstants.RESULT_NAME, PayConstants.RESULT_PAYCODE_201);
-
-        } else {
-            LogUtil.writeLog("验证签名结果[成功].");
-            //【注：为了安全验签成功才应该写商户的成功处理逻辑】交易成功，更新商户订单状态
-
-            String paymentId = reqParam.get("orderId"); //获取后台通知的数据，其他字段也可用类似方式获取
-            String respCode = reqParam.get("respCode");
-            //判断respCode=00、A6后，对涉及资金类的交易，请再发起查询接口查询，确定交易成功后更新数据库。
-            reqParam.put("paymentId", paymentId);
-            reqParam.put(PayConstants.RESULT_NAME, PayConstants.RESULT_PAYCODE_200);
-            System.out.println("paymentId:" + paymentId + ",respCode:" + respCode);
-
-        }
-
-        LogUtil.writeLog("BackRcvResponse接收后台通知结束");
-        //返回给银联服务器http 200  状态码
-//        resp.getWriter().print("ok");
-        return reqParam;
     }
 
     @Override
