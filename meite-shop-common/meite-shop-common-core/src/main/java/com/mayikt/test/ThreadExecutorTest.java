@@ -29,6 +29,9 @@ public class ThreadExecutorTest {
         try {
             // 等任务执行完毕会打印null
             System.out.println("result:" + submit.get());
+            if (submit.get() == null) {
+                System.out.println(">>>任务完成...");
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
