@@ -31,7 +31,7 @@ http://xxlssoclient1.com:8902/xxl-sso-web-sample-springboot/
 http://xxlssoclient2.com:8902/xxl-sso-web-sample-springboot/
 
 xxl-sso单点登录原理
-1.首先访问：http://xxlssoclient1.com:8902/xxl-sso-web-sample-springboot/
+1.首先访问客户端1：http://xxlssoclient1.com:8902/xxl-sso-web-sample-springboot/
 拦截器XxlSsoWebFilter从ssoclient的cookie获取xxl_sso_sessionid，根据xxl_sso_sessionid获取用户信息为空
 重定向到：http://xxlssoserver.com:8900/xxl-sso-server/login?redirect_url=http://xxlssoclient1.com:8902/xxl-sso-web-sample-springboot/
 
@@ -45,10 +45,14 @@ makeSessionid：userId_version
 放入user到redis中:   key:xxl_sso_sessionid#userId  value:xxlUser
 重定向:http://xxlssoclient1.com:8902/xxl-sso-web-sample-springboot/?xxl_sso_sessionid=
 
-4.访问：http://xxlssoclient2.com:8902/xxl-sso-web-sample-springboot/
+4.重定向回客户端1，把xxl_sso_sessionid放入到子域名下的cookie中，以供下次直接获取
+
+5.访问客户端2：http://xxlssoclient2.com:8902/xxl-sso-web-sample-springboot/
 从ssoclient的cookie中获取xxl_sso_sessionid：null
 重定向到：http://xxlssoserver.com:8900/xxl-sso-server/login?redirect_url=http://xxlssoclient2.com:8902/xxl-sso-web-sample-springboot/
 
-5.到ssoserver的/login之后，获取ssoserver的cookie里面的xxl_sso_sessionid
+6.到ssoserver的/login之后，获取ssoserver的cookie里面的xxl_sso_sessionid
 根据xxl_sso_sessionid到redis获取xxlUser
 重定向:http://xxlssoclient2.com:8902/xxl-sso-web-sample-springboot/?xxl_sso_sessionid=
+
+6.重定向回客户端2，把xxl_sso_sessionid放入到子域名下的cookie中，以供下次直接获取
